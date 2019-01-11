@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary" />
-    <!--坐标UI-->
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cslCoordinate"
         android:layout_width="match_parent"
@@ -49,7 +48,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tvContent01"
+            android:id="@+id/tvCoordinate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -57,7 +56,15 @@
             app:layout_constraintTop_toBottomOf="@id/rlParent" />
 
         <TextView
-            android:id="@+id/tvContent02"
+            android:id="@+id/tvSizeAndLayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rlParent" />
+
+        <TextView
+            android:id="@+id/tvTouchCoodinate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -66,6 +73,5 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/rlParent" />
     </android.support.constraint.ConstraintLayout>
-
 
 </android.support.constraint.ConstraintLayout>
