@@ -199,17 +199,25 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
     String getHeight() {
         Rect frame = new Rect();
         tvChild.getWindowVisibleDisplayFrame(frame);
+        Rect localVisibleRect = new Rect();
+        tvChild.getLocalVisibleRect(localVisibleRect);
+        Rect globalVisibleRect = new Rect();
+        tvChild.getGlobalVisibleRect(globalVisibleRect);
         return String.format("findViewById(android.R.id.content).getHeight(): %d\n" +
                         "child.getRootView().getHeight():%d\n" +
                         "getWindow().getDecorView().getHeight():%d\n" +
                         "tvChild.getWindowVisibleDisplayFrame:%s\n" +
+                        "tvChild.getLocalVisibleRect:%s\n" +
+                        "tvChild.getGlobalVisibleRect:%s\n" +
                         "toolbar.getHeight():%d\n" +
-                        "statuebarHeight:%d\n"+
-                "navigateBarHeight:%d\n",
+                        "statuebarHeight:%d\n" +
+                        "navigateBarHeight:%d\n",
                 findViewById(android.R.id.content).getHeight(),
                 tvChild.getRootView().getHeight(),
                 getWindow().getDecorView().getHeight(),
                 frame.toString(),
+                localVisibleRect.toString(),
+                globalVisibleRect.toString(),
                 toolbar.getHeight(),
                 frame.top,
                 getWindow().getDecorView().getHeight() - frame.bottom);

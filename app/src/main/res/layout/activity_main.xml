@@ -11,7 +11,7 @@
         android:id="@+id/btnCoordinate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="坐标系、尺寸、视图层级"
+        android:text="坐标、区域、视图层级"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
