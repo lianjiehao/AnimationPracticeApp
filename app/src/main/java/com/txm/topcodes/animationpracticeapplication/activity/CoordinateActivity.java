@@ -3,6 +3,7 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
