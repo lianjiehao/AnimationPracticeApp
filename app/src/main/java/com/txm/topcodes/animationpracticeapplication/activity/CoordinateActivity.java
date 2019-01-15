@@ -2,6 +2,7 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -50,6 +52,7 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
 
     @Override
     public void initListener() {
+        logDebug("onCreate");
         title = getIntent().getStringExtra(TITLE_EXTRA);
         rlParent = findViewById(R.id.rlParent);
         tvChild = findViewById(R.id.tvChild);
@@ -64,17 +67,18 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
                         motionEvent.getRawX(), motionEvent.getRawY(),
                         motionEvent.getX(), motionEvent.getY());
                 tvTouchCoodinate.setText(content);
-                logDebug(motionEvent.toString());
                 return false;
             }
         });
         initToolbar();
+
     }
 
     @Override
     public void initdata() {
-
+        testViewTreeObserver();
     }
+
 
     void initToolbar() {
         toolbar = findViewById(R.id.toolbar);
@@ -91,7 +95,6 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
         });
     }
 
-
     /**
      * 创建菜单
      */
@@ -106,6 +109,8 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         tvCoordinate.setText(getCoordinate());
+        getWindow().getDecorView().setClickable(true);
+        logDebug("onWindowFocusChanged:");
     }
 
     @Override
@@ -239,4 +244,78 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
                 getWindow().getDecorView());
     }
 
+
+    /**
+     * 测试ViewTreeObserver
+     */
+    void testViewTreeObserver() {
+        ViewTreeObserver observer = getWindow().getDecorView().getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                logDebug("ViewTree-onGlobalLayout");
+            }
+        });
+        observer.addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
+            @Override
+            public void onDraw() {
+                logDebug("ViewTree-onDraw");
+            }
+        });
+        observer.addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
+            @Override
+            public void onGlobalFocusChanged(View view, View view1) {
+                logDebug("ViewTree-onGlobalFocusChanged");
+            }
+        });
+        observer.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                logDebug("ViewTree-onScrollChanged");
+            }
+        });
+        observer.addOnTouchModeChangeListener(new ViewTreeObserver.OnTouchModeChangeListener() {
+            @Override
+            public void onTouchModeChanged(boolean b) {
+                logDebug("ViewTree-onTouchModeChanged");
+            }
+        });
+//        observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+//            @Override
+//            public boolean onPreDraw() {
+//                logDebug("onPreDraw");
+//                return true;//注意这里的返回值
+//            }
+//        });
+        observer.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
+            @Override
+            public void onWindowFocusChanged(boolean b) {
+                logDebug("ViewTree-onWindowFocusChanged");
+            }
+        });
+        observer.addOnWindowAttachListener(new ViewTreeObserver.OnWindowAttachListener() {
+            @Override
+            public void onWindowAttached() {
+                logDebug("ViewTree-onWindowAttached");
+            }
+
+            @Override
+            public void onWindowDetached() {
+                logDebug("ViewTree-onWindowDetached");
+            }
+        });
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        logDebug("onStart:");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        logDebug("onResume:");
+    }
 }
