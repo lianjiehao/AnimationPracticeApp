@@ -1,5 +1,6 @@
 package com.txm.topcodes.animationpracticeapplication.activity;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -12,10 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
+import com.txm.topcodes.animationpracticeapplication.view.MProgressView;
 
 /**
  * Created by Tangxianming on 2019/1/17.
@@ -29,8 +32,10 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
     ImageView ivTween;
     ImageView ivFrame;
     ConstraintLayout cslFrame;
+    ConstraintLayout cslProperty;
+    MProgressView progressView;
     AnimationDrawable animationDrawable;
-
+    ObjectAnimator objectAnimator;
 
     public static void start(Context context, String title) {
         Intent starter = new Intent(context, ViewPropertyAnimationActivity.class);
@@ -49,17 +54,25 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
         ivTween = findViewById(R.id.ivTween);
         ivFrame = findViewById(R.id.ivFrame);
         cslFrame = findViewById(R.id.cslFrame);
+        progressView = findViewById(R.id.progressView);
+        cslProperty = findViewById(R.id.cslProperty);
         findViewById(R.id.btnStart).setOnClickListener(this);
         findViewById(R.id.btnStop).setOnClickListener(this);
+        findViewById(R.id.btnRestart).setOnClickListener(this);
         initToolbar();
     }
 
     @Override
     public void initdata() {
-        animationDrawable= (AnimationDrawable) ivFrame.getDrawable();
-        tweenAnimation();
+        animationDrawable = (AnimationDrawable) ivFrame.getDrawable();//逐帧动画
+        objectAnimator = ObjectAnimator.ofFloat(progressView, "progress", 280f).setDuration(1000);//属性动画
+        objectAnimator.setInterpolator(new OvershootInterpolator());//设置插值器
+        startTweenAnimation();
     }
 
+    /**
+     * 初始化toolbar参数
+     */
     void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(title);
@@ -89,42 +102,33 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.action_tween://补间动画
+                ivTween.setAlpha(1f);//运用了补间动画的view "setVisibility"方法无效
                 cslFrame.setVisibility(View.GONE);
-                ivTween.setVisibility(View.VISIBLE);
-                tweenAnimation();
+                cslProperty.setVisibility(View.GONE);
+                startTweenAnimation();
                 break;
             case R.id.action_frame://逐帧动画
+                ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
                 cslFrame.setVisibility(View.VISIBLE);
-                ivTween.setVisibility(View.GONE);
-                frameAnimation();
+                cslProperty.setVisibility(View.GONE);
+                animationDrawable.start();
                 break;
             case R.id.action_property://属性动画
-                propertyAnimation();
+                ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
+                cslFrame.setVisibility(View.GONE);
+                cslProperty.setVisibility(View.VISIBLE);
+                objectAnimator.start();
                 break;
         }
         return false;
     }
 
     /**
-     * 补间动画
+     * 开始补间动画
      */
-    void tweenAnimation() {
+    void startTweenAnimation() {
         Animation translateAnimation = AnimationUtils.loadAnimation(this, R.anim.view_animation);
         ivTween.startAnimation(translateAnimation);
-    }
-
-    /**
-     * 逐帧动画
-     */
-    void frameAnimation() {
-        animationDrawable.start();
-    }
-
-    /**
-     * 属性动画
-     */
-    void propertyAnimation() {
-
     }
 
 
@@ -136,6 +140,9 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 break;
             case R.id.btnStop:
                 animationDrawable.stop();
+                break;
+            case R.id.btnRestart:
+                objectAnimator.start();
                 break;
         }
     }
