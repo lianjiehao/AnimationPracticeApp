@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btnViewPropertyAnimation:
                 ViewPropertyAnimationActivity.start(this, ((Button) findViewById(R.id.btnViewPropertyAnimation)).getText().toString());
+                overridePendingTransition(R.anim.in_from_right,R.anim.out_to_left);
                 break;
         }
     }
