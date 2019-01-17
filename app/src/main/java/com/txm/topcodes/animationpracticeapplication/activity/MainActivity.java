@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void initListener() {
         findViewById(R.id.btnCoordinate).setOnClickListener(this);
+        findViewById(R.id.btnViewPropertyAnimation).setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +43,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btnCoordinate:
                 CoordinateActivity.start(this, ((Button) findViewById(R.id.btnCoordinate)).getText().toString());
+                break;
+            case R.id.btnViewPropertyAnimation:
+                ViewPropertyAnimationActivity.start(this, ((Button) findViewById(R.id.btnViewPropertyAnimation)).getText().toString());
                 break;
         }
     }

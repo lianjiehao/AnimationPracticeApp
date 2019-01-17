@@ -19,7 +19,12 @@
         <activity
             android:name=".activity.MDialogActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".activity.CoordinateActivity"></activity>
+        <activity
+            android:name=".activity.CoordinateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ViewPropertyAnimationActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
