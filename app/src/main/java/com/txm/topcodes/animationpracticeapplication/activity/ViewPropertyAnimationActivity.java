@@ -111,6 +111,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
                 cslFrame.setVisibility(View.VISIBLE);
                 cslProperty.setVisibility(View.GONE);
+                animationDrawable.stop();
                 animationDrawable.start();
                 break;
             case R.id.action_property://属性动画
@@ -136,6 +137,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnStart:
+                animationDrawable.stop();// 特别注意：当oneshot==ture时，在动画start()之前要先stop()，不然在第一次动画之后会停在最后一帧，这样动画就只会触发一次。
                 animationDrawable.start();
                 break;
             case R.id.btnStop:
