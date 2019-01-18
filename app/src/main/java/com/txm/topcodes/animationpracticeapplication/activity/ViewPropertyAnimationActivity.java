@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
@@ -65,7 +66,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
     @Override
     public void initdata() {
         animationDrawable = (AnimationDrawable) ivFrame.getDrawable();//逐帧动画
-        objectAnimator = ObjectAnimator.ofFloat(progressView, "progress", 280f).setDuration(1000);//属性动画
+        objectAnimator = ObjectAnimator.ofFloat(progressView, "progress", 30f,280f).setDuration(1000);//属性动画
         objectAnimator.setInterpolator(new OvershootInterpolator());//设置插值器
         startTweenAnimation();
     }
