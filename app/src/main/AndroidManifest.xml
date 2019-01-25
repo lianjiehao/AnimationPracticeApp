@@ -17,9 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MDialogActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity
             android:name=".activity.CoordinateActivity"
             android:screenOrientation="portrait" />
         <activity

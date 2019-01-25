@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_tween"
-        android:orderInCategory="80"
+        android:orderInCategory="70"
         android:title="补间动画"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_layout_animation"
+        android:orderInCategory="80"
+        android:title="LayoutAnimation"
         app:showAsAction="never" />
 
     <item
