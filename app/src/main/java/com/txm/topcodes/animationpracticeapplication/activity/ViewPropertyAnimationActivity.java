@@ -53,7 +53,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
     Button btnListRemove;
     ConstraintLayout cslLayoutAnimation;
     ConstraintLayout cslViewProperty;
-    Button btnRestartViewProperty;
+    Button btnContinueViewProperty;
     ImageView ivViewProperty;
     List<String> strings = new ArrayList<>();
     StringAdapter stringAdapter;
@@ -76,8 +76,8 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
         ivFrame = findViewById(R.id.ivFrame);
         cslFrame = findViewById(R.id.cslFrame);
         btnListAdd = findViewById(R.id.btnListAdd);
-        btnRestartViewProperty = findViewById(R.id.btnRestartViewProperty);
-        btnRestartViewProperty.setOnClickListener(this);
+        btnContinueViewProperty = findViewById(R.id.btnContinueViewProperty);
+        btnContinueViewProperty.setOnClickListener(this);
         ivViewProperty = findViewById(R.id.ivViewProperty);
         btnListAdd.setOnClickListener(this);
         btnListRemove = findViewById(R.id.btnListRemove);
@@ -221,7 +221,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                     stringAdapter.notifyItemRemoved(strings.size());
                 }
                 break;
-            case R.id.btnRestartViewProperty://重新开启ViewPropertyAnimator动画,验证withStartAction
+            case R.id.btnContinueViewProperty://验证ViewPropertyAnimator动画的withStartAction
                 viewPropertyAnimatior();
                 break;
         }
