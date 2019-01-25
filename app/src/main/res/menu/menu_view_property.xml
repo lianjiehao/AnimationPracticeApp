@@ -24,4 +24,12 @@
         android:orderInCategory="100"
         android:title="属性动画"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_view_property"
+        android:orderInCategory="110"
+        android:title="ViewPropertyAnimator"
+        app:showAsAction="never" />
+
+
 </menu>

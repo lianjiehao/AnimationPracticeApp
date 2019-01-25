@@ -1,5 +1,7 @@
 package com.txm.topcodes.animationpracticeapplication.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -49,6 +52,9 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
     Button btnListAdd;
     Button btnListRemove;
     ConstraintLayout cslLayoutAnimation;
+    ConstraintLayout cslViewProperty;
+    Button btnRestartViewProperty;
+    ImageView ivViewProperty;
     List<String> strings = new ArrayList<>();
     StringAdapter stringAdapter;
 
@@ -70,10 +76,14 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
         ivFrame = findViewById(R.id.ivFrame);
         cslFrame = findViewById(R.id.cslFrame);
         btnListAdd = findViewById(R.id.btnListAdd);
+        btnRestartViewProperty = findViewById(R.id.btnRestartViewProperty);
+        btnRestartViewProperty.setOnClickListener(this);
+        ivViewProperty = findViewById(R.id.ivViewProperty);
         btnListAdd.setOnClickListener(this);
         btnListRemove = findViewById(R.id.btnListRemove);
         btnListRemove.setOnClickListener(this);
         cslLayoutAnimation = findViewById(R.id.cslLayoutAnimation);
+        cslViewProperty = findViewById(R.id.cslViewProperty);
         progressView = findViewById(R.id.progressView);
         cslProperty = findViewById(R.id.cslProperty);
         rcyContent = findViewById(R.id.rcyContent);
@@ -128,6 +138,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslFrame.setVisibility(View.GONE);
                 cslProperty.setVisibility(View.GONE);
                 cslLayoutAnimation.setVisibility(View.GONE);
+                cslViewProperty.setVisibility(View.GONE);
                 startTweenAnimation();
                 break;
             case R.id.action_layout_animation:
@@ -135,6 +146,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslLayoutAnimation.setVisibility(View.VISIBLE);
                 cslFrame.setVisibility(View.GONE);
                 cslProperty.setVisibility(View.GONE);
+                cslViewProperty.setVisibility(View.GONE);
                 initRecyleView();
                 break;
             case R.id.action_frame://逐帧动画
@@ -142,6 +154,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslFrame.setVisibility(View.VISIBLE);
                 cslProperty.setVisibility(View.GONE);
                 cslLayoutAnimation.setVisibility(View.GONE);
+                cslViewProperty.setVisibility(View.GONE);
                 animationDrawable.stop();
                 animationDrawable.start();
                 break;
@@ -150,7 +163,15 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslFrame.setVisibility(View.GONE);
                 cslProperty.setVisibility(View.VISIBLE);
                 cslLayoutAnimation.setVisibility(View.GONE);
+                cslViewProperty.setVisibility(View.GONE);
                 objectAnimator.start();
+                break;
+            case R.id.action_view_property:
+                ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
+                cslFrame.setVisibility(View.GONE);
+                cslProperty.setVisibility(View.GONE);
+                cslLayoutAnimation.setVisibility(View.GONE);
+                cslViewProperty.setVisibility(View.VISIBLE);
                 break;
         }
         return false;
@@ -192,7 +213,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 break;
             case R.id.btnListAdd:
                 strings.add(String.format("ITEM_%d", strings.size()));
-                stringAdapter.notifyItemInserted(strings.size()-1);
+                stringAdapter.notifyItemInserted(strings.size() - 1);
                 break;
             case R.id.btnListRemove:
                 if (strings.size() > 0) {
@@ -200,8 +221,51 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                     stringAdapter.notifyItemRemoved(strings.size());
                 }
                 break;
+            case R.id.btnRestartViewProperty://重新开启ViewPropertyAnimator动画,验证withStartAction
+                viewPropertyAnimatior();
+                break;
         }
     }
+
+    /**
+     * 此方法验证如下结论：
+     * withStartAction() / withEndAction() 是一次性的，在动画执行结束后就自动弃掉了，就算之后再重用  ViewPropertyAnimator 来做别的动画，用它们设置的回调也不会再被调用。
+     * 而 set/addListener() 所设置的 AnimatorListener 是持续有效的，当动画重复执行时，回调总会被调用。
+     */
+    void viewPropertyAnimatior() {
+        final ViewPropertyAnimator viewPropertyAnimator = ivViewProperty.animate();
+        logDebug(viewPropertyAnimator.toString());
+        viewPropertyAnimator.rotationBy(360).withStartAction(new Runnable() {
+            @Override
+            public void run() {
+                logDebug("withStartAction");//注意它的执行次数
+            }
+        }).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                logDebug("withEndAction");//注意它的执行次数
+            }
+        }).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                logDebug("onAnimationStart");//注意它的执行次数
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                logDebug("onAnimationEnd");//注意它的执行次数
+            }
+        });
+        ivViewProperty.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewPropertyAnimator.translationXBy(20);
+            }
+        }, 1000);
+    }
+
 
     /**
      * String列表适配器
