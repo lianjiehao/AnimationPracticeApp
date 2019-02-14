@@ -24,6 +24,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="视图、属性动画" />
+
+        <Button
+            android:id="@+id/animatedVectorDrawable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="矢量图动画" />
     </LinearLayout>
 
 </ScrollView>
