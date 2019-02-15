@@ -2,14 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_way_01"
+        android:id="@+id/action_way_single_file"
         android:orderInCategory="80"
-        android:title="方法一"
+        android:title="3个文件方式"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_way_02"
+        android:id="@+id/action_way_three_file"
         android:orderInCategory="90"
-        android:title="方法二"
+        android:title="单个文件方式"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_way_trim_clip"
+        android:orderInCategory="90"
+        android:title="修剪和裁剪"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_way_animated_selector"
+        android:orderInCategory="90"
+        android:title="切换动画"
+        app:showAsAction="never" />
+
 </menu>

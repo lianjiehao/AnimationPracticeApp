@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/clip_trim_vector_drawable">
+    <target
+        android:name="root"
+        android:animation="@animator/my_android_alpha_to_1" />
+
+    <target
+        android:name="crossPath"
+        android:animation="@animator/my_android_cross_to_disappear" />
+
+    <target
+        android:name="maskClipPath"
+        android:animation="@animator/my_android_clip" />
+
+</animated-vector>

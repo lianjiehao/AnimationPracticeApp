@@ -18,15 +18,18 @@ import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
 
 /**
- * Created by Tangxianming on 2019/2/14.
+ * Created by Tangxianming on 2SingleFile9/2/14.
  * 矢量图动画
  */
 public class AnimatedVectorDrawableActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
     Toolbar toolbar;
-    ImageView ivAnimation01;
-    ImageView ivAnimation02;
-    ConstraintLayout cslAnimation01;
-    ConstraintLayout cslAnimation02;
+    ImageView ivAnimationSingleFile;
+    ImageView ivAnimationThreeFile;
+    ImageView ivAnimationTrimClip;
+    ConstraintLayout cslAnimationSingleFile;
+    ConstraintLayout cslAnimationThreeFile;
+    ConstraintLayout cslAnimationTrimClip;
+    ConstraintLayout cslAnimatorSelector;
     String title;
     private static final String TITLE_EXTRA = "titleExtra";
 
@@ -44,24 +47,36 @@ public class AnimatedVectorDrawableActivity extends BaseActivity implements Tool
 
     @Override
     public void initListener() {
-        cslAnimation01 = findViewById(R.id.cslAnimation01);
-        cslAnimation02 = findViewById(R.id.cslAnimation02);
+        cslAnimationSingleFile = findViewById(R.id.cslAnimationSingleFile);
+        cslAnimationThreeFile = findViewById(R.id.cslAnimationThreeFile);
+        cslAnimationTrimClip = findViewById(R.id.cslAnimationTrimClip);
+        cslAnimatorSelector = findViewById(R.id.cslAnimatorSelector);
         title = getIntent().getStringExtra(TITLE_EXTRA);
-        ivAnimation01 = findViewById(R.id.ivAnimation01);
-        findViewById(R.id.btnStart01).setOnClickListener(new View.OnClickListener() {
+        ivAnimationSingleFile = findViewById(R.id.ivAnimationSingleFile);
+        findViewById(R.id.btnStartSingleFile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable drawable = ivAnimation01.getDrawable();//三个文件定义的矢量图动画
+                Drawable drawable = ivAnimationSingleFile.getDrawable();//单个文件定义的矢量图动画
                 if (drawable instanceof Animatable) {
                     ((Animatable) drawable).start();
                 }
             }
         });
-        ivAnimation02 = findViewById(R.id.ivAnimation02);
-        findViewById(R.id.btnStart02).setOnClickListener(new View.OnClickListener() {
+        ivAnimationThreeFile = findViewById(R.id.ivAnimationThreeFile);
+        findViewById(R.id.btnStartThreeFile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable drawable = ivAnimation02.getDrawable();//单个文件定义的矢量图动画
+                Drawable drawable = ivAnimationThreeFile.getDrawable();//三个文件定义的矢量图动画
+                if (drawable instanceof Animatable) {
+                    ((Animatable) drawable).start();
+                }
+            }
+        });
+        ivAnimationTrimClip = findViewById(R.id.ivAnimationTrimClip);
+        ivAnimationTrimClip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable drawable = ivAnimationTrimClip.getDrawable();//修建裁剪
                 if (drawable instanceof Animatable) {
                     ((Animatable) drawable).start();
                 }
@@ -102,13 +117,30 @@ public class AnimatedVectorDrawableActivity extends BaseActivity implements Tool
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.action_way_01:
-                cslAnimation01.setVisibility(View.VISIBLE);
-                cslAnimation02.setVisibility(View.GONE);
+            case R.id.action_way_single_file:
+                cslAnimationSingleFile.setVisibility(View.VISIBLE);
+                cslAnimationThreeFile.setVisibility(View.GONE);
+                cslAnimationTrimClip.setVisibility(View.GONE);
+                cslAnimatorSelector.setVisibility(View.GONE);
                 break;
-            case R.id.action_way_02:
-                cslAnimation01.setVisibility(View.GONE);
-                cslAnimation02.setVisibility(View.VISIBLE);
+            case R.id.action_way_three_file:
+                cslAnimationSingleFile.setVisibility(View.GONE);
+                cslAnimationThreeFile.setVisibility(View.VISIBLE);
+                cslAnimationTrimClip.setVisibility(View.GONE);
+                cslAnimatorSelector.setVisibility(View.GONE);
+
+                break;
+            case R.id.action_way_trim_clip:
+                cslAnimationSingleFile.setVisibility(View.GONE);
+                cslAnimationThreeFile.setVisibility(View.GONE);
+                cslAnimationTrimClip.setVisibility(View.VISIBLE);
+                cslAnimatorSelector.setVisibility(View.GONE);
+                break;
+            case R.id.action_way_animated_selector:
+                cslAnimationSingleFile.setVisibility(View.GONE);
+                cslAnimationThreeFile.setVisibility(View.GONE);
+                cslAnimationTrimClip.setVisibility(View.GONE);
+                cslAnimatorSelector.setVisibility(View.VISIBLE);
                 break;
         }
         return false;
