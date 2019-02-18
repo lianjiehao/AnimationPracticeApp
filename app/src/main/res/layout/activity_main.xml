@@ -30,6 +30,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="矢量图动画" />
+
+        <Button
+            android:id="@+id/btnLottie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lottie动画" />
+
     </LinearLayout>
 
 </ScrollView>

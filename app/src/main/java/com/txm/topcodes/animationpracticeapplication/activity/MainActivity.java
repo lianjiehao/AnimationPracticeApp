@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btnCoordinate).setOnClickListener(this);
         findViewById(R.id.btnViewPropertyAnimation).setOnClickListener(this);
         findViewById(R.id.animatedVectorDrawable).setOnClickListener(this);
+        findViewById(R.id.btnLottie).setOnClickListener(this);
     }
 
     @Override
@@ -50,7 +51,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
             case R.id.animatedVectorDrawable:
-                AnimatedVectorDrawableActivity.start(this,((Button) findViewById(R.id.animatedVectorDrawable)).getText().toString());
+                AnimatedVectorDrawableActivity.start(this, ((Button) findViewById(R.id.animatedVectorDrawable)).getText().toString());
+                break;
+            case R.id.btnLottie:
+                LottieActivity.start(this);
                 break;
         }
     }
