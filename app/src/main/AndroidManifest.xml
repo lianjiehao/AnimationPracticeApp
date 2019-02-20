@@ -27,7 +27,7 @@
             android:name=".activity.AnimatedVectorDrawableActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LottieActivity"
+            android:name=".activity.RevealOrHideActivity"
             android:screenOrientation="portrait" />
     </application>
 

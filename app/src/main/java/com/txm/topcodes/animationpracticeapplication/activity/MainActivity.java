@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btnCoordinate).setOnClickListener(this);
         findViewById(R.id.btnViewPropertyAnimation).setOnClickListener(this);
         findViewById(R.id.animatedVectorDrawable).setOnClickListener(this);
-        findViewById(R.id.btnLottie).setOnClickListener(this);
+        findViewById(R.id.btnRevealHide).setOnClickListener(this);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.animatedVectorDrawable:
                 AnimatedVectorDrawableActivity.start(this, ((Button) findViewById(R.id.animatedVectorDrawable)).getText().toString());
                 break;
-            case R.id.btnLottie:
-                LottieActivity.start(this);
+            case R.id.btnRevealHide:
+                RevealOrHideActivity.start(this,((Button) findViewById(R.id.btnRevealHide)).getText().toString());
                 break;
         }
     }

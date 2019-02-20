@@ -32,10 +32,10 @@
             android:text="矢量图动画" />
 
         <Button
-            android:id="@+id/btnLottie"
+            android:id="@+id/btnRevealHide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lottie动画" />
+            android:text="RevealHide动画" />
 
     </LinearLayout>
 
