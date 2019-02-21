@@ -8,4 +8,6 @@
         o their jobs in Guangdong province for the first time, and onboard services — including fre
         o their jobs in Guangdong province for the first time, and onboard services — including fre
     </string>
+    <integer name="card_flip_time_full">250</integer>
+    <integer name="card_flip_time_half">125</integer>
 </resources>
