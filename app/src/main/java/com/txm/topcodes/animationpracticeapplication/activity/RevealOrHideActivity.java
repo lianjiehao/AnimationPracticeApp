@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
+import com.txm.topcodes.animationpracticeapplication.util.LogUtil;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -283,10 +284,74 @@ public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenu
      * A fragment representing the front of the card.
      */
     public static class CardFrontFragment extends Fragment {
+
+        @Override
+        public void onAttach(Context context) {
+            super.onAttach(context);
+            LogUtil.d("fragmentCycle", "CardFront-onAttach");
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            LogUtil.d("fragmentCycle", "CardFront-onCreate");
+        }
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            LogUtil.d("fragmentCycle", "CardFront-onCreateView");
             return inflater.inflate(R.layout.fragment_card_front, container, false);
+        }
+
+
+        @Override
+        public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            LogUtil.d("fragmentCycle", "CardFront-onActivityCreated");
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            LogUtil.d("fragmentCycle", "CardFront-onStart");
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            LogUtil.d("fragmentCycle", "CardFront-onResume");
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            LogUtil.d("fragmentCycle", "CardFront-onPause");
+        }
+
+        @Override
+        public void onStop() {
+            super.onStop();
+            LogUtil.d("fragmentCycle", "CardFront-onStop");
+        }
+
+        @Override
+        public void onDestroyView() {
+            super.onDestroyView();
+            LogUtil.d("fragmentCycle", "CardFront-onDestroyView");
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            LogUtil.d("fragmentCycle", "CardFront-onDestroy");
+        }
+
+        @Override
+        public void onDetach() {
+            super.onDetach();
+            LogUtil.d("fragmentCycle", "CardFront-onDetach");
         }
     }
 
@@ -294,11 +359,77 @@ public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenu
      * A fragment representing the back of the card.
      */
     public static class CardBackFragment extends Fragment {
+
+
+        @Override
+        public void onAttach(Context context) {
+            super.onAttach(context);
+            LogUtil.d("fragmentCycle", "CardBack-onAttach");
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            LogUtil.d("fragmentCycle", "CardBack-onCreate");
+        }
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            LogUtil.d("fragmentCycle", "CardBack-onCreateView");
             return inflater.inflate(R.layout.fragment_card_back, container, false);
         }
+
+        @Override
+        public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            LogUtil.d("fragmentCycle", "CardBack-onActivityCreated");
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            LogUtil.d("fragmentCycle", "CardBack-onStart");
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            LogUtil.d("fragmentCycle", "CardBack-onResume");
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            LogUtil.d("fragmentCycle", "CardBack-onPause");
+        }
+
+        @Override
+        public void onStop() {
+            super.onStop();
+            LogUtil.d("fragmentCycle", "CardBack-onStop");
+        }
+
+        @Override
+        public void onDestroyView() {
+            super.onDestroyView();
+            LogUtil.d("fragmentCycle", "CardBack-onDestroyView");
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            LogUtil.d("fragmentCycle", "CardBack-onDestroy");
+        }
+
+        @Override
+        public void onDetach() {
+            super.onDetach();
+            LogUtil.d("fragmentCycle", "CardBack-onDetach");
+        }
+
+
     }
 
 
