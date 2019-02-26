@@ -126,7 +126,7 @@ public class MoveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     }
 
     /**
-     * path类型的插值器动画
+     * path类型的插值器动画(自定义插值器的简便方法)
      */
     void startPathInterpolatorAnimator() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -143,7 +143,7 @@ public class MoveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     }
 
     /**
-     * 路径动画（ps：对于某些场景，也可以使用属性动画的估值器来实现。路径动画和估值器有互补性。）
+     * 路径动画（自定义估值器的简便方法）
      */
     public void startPathAnimator() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
