@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btnViewPropertyAnimation).setOnClickListener(this);
         findViewById(R.id.animatedVectorDrawable).setOnClickListener(this);
         findViewById(R.id.btnRevealHide).setOnClickListener(this);
+        findViewById(R.id.btnMove).setOnClickListener(this);
     }
 
     @Override
@@ -49,7 +50,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 AnimatedVectorDrawableActivity.start(this, ((Button) findViewById(R.id.animatedVectorDrawable)).getText().toString());
                 break;
             case R.id.btnRevealHide:
-                RevealOrHideActivity.start(this,((Button) findViewById(R.id.btnRevealHide)).getText().toString());
+                RevealOrHideActivity.start(this, ((Button) findViewById(R.id.btnRevealHide)).getText().toString());
+                break;
+            case R.id.btnMove:
+                MoveActivity.start(this, ((Button) findViewById(R.id.btnMove)).getText().toString());
                 break;
         }
     }

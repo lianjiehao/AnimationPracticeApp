@@ -37,6 +37,13 @@
             android:layout_height="wrap_content"
             android:text="RevealHide动画" />
 
+        <Button
+            android:id="@+id/btnMove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Curved、Fling动画" />
+
+
     </LinearLayout>
 
 </ScrollView>

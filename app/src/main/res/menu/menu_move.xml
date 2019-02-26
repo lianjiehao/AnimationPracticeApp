@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_path_interpolator"
+        android:orderInCategory="80"
+        android:title="path类型的插值器"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_path_animator"
+        android:orderInCategory="80"
+        android:title="路径动画"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_fling"
+        android:orderInCategory="90"
+        android:title="Fling动画"
+        app:showAsAction="never" />
+</menu>
