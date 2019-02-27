@@ -27,4 +27,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
     implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha1'
     implementation "com.airbnb.android:lottie:latest.release"
+    implementation 'com.android.support:support-dynamic-animation:28.0.0'
 }

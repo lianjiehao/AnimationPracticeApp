@@ -1,6 +1,7 @@
 package com.txm.topcodes.animationpracticeapplication.util;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
 
 /**
  * Created by Tangxianming on 2019/1/18.
@@ -29,5 +30,16 @@ public class SystemUtil {
         float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
+
+    /**
+     * 屏幕宽度
+     *
+     * @return
+     */
+    public static int getScreenWidth() {
+        DisplayMetrics curMetrics = GlobalUtil.INSTANCE.getContext().getResources().getDisplayMetrics();
+        return curMetrics.widthPixels;
+    }
+
 
 }

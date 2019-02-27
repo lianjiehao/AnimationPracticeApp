@@ -38,8 +38,8 @@
     <RelativeLayout
         android:id="@+id/rlPathAnimator"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
@@ -57,6 +57,33 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="start" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rlFlingAnimator"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:id="@+id/ivFling"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_sentiment_satisfied_black_48dp" />
+
+        <Button
+            android:id="@+id/btnResetFling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="reset" />
 
     </RelativeLayout>
 
