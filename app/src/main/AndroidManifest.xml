@@ -39,6 +39,9 @@
         <activity
             android:name=".activity.ZoomActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TransitionAnimateActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

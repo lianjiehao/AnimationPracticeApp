@@ -56,6 +56,13 @@
             android:layout_height="wrap_content"
             android:text="Spring动画" />
 
+
+        <Button
+            android:id="@+id/btnTransition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transition动画" />
+
     </LinearLayout>
 
 </ScrollView>

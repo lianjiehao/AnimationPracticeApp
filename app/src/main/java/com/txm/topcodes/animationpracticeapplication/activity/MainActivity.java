@@ -31,6 +31,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btnMove).setOnClickListener(this);
         findViewById(R.id.btnSpring).setOnClickListener(this);
         findViewById(R.id.btnZoom).setOnClickListener(this);
+        findViewById(R.id.btnTransition).setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +63,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btnZoom:
                 ZoomActivity.start(this, ((Button) findViewById(R.id.btnZoom)).getText().toString());
+                break;
+            case R.id.btnTransition:
+                TransitionAnimateActivity.start(this, ((Button) findViewById(R.id.btnTransition)).getText().toString());
                 break;
         }
     }
