@@ -36,6 +36,9 @@
         <activity
             android:name=".activity.SpringActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ZoomActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
