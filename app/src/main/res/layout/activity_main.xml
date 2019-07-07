@@ -43,13 +43,34 @@
             android:layout_height="wrap_content"
             android:text="Curved、Fling动画" />
 
-        
+
         <Button
             android:id="@+id/btnZoom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Zoom动画" />
 
+        <Button
+            android:id="@+id/btnSpring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spring动画" />
+
+
+        <Button
+            android:id="@+id/btnTransition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transition动画" />
+
+
+        <Button
+            android:id="@+id/btnDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="demo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </LinearLayout>
 

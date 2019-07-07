@@ -34,7 +34,17 @@
             android:name=".activity.MoveActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.SpringActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.ZoomActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TransitionAnimateActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.DemoActivity"
             android:screenOrientation="portrait" />
     </application>
 

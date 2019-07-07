@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_auto"
+        android:orderInCategory="80"
+        android:title="Auto动画"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_transition_layout"
+        android:orderInCategory="90"
+        android:title="transition in layout"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_custom_transition"
+        android:orderInCategory="100"
+        android:title="custom transtion"
+        app:showAsAction="never" />
+</menu>

@@ -1,4 +1,4 @@
-package com.topcodes.gamestart;
+package com.example.opengl;
 
 import androidx.appcompat.app.AppCompatActivity;
 

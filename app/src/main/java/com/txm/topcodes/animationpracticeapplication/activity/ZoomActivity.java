@@ -216,7 +216,6 @@ public class ZoomActivity extends BaseActivity {
                                 .ofFloat(expandedImageView,
                                         View.SCALE_Y, startScaleFinal));
                 set.setDuration(shortAnimationDuration);
-                set.setInterpolator(new DecelerateInterpolator());
                 set.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {

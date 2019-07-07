@@ -1,4 +1,4 @@
-package com.topcodes.gamestart;
+package com.example.opengl;
 
 import org.junit.Test;
 

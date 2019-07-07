@@ -2,6 +2,7 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.Rect;
 import androidx.annotation.Nullable;
 
@@ -202,13 +203,15 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
         Rect localVisibleRect = new Rect();
         tvChild.getLocalVisibleRect(localVisibleRect);
         Rect globalVisibleRect = new Rect();
-        tvChild.getGlobalVisibleRect(globalVisibleRect);
+        Point offset=new Point();
+        tvChild.getGlobalVisibleRect(globalVisibleRect,offset);
         return String.format("findViewById(android.R.id.content).getHeight(): %d\n" +
                         "child.getRootView().getHeight():%d\n" +
                         "getWindow().getDecorView().getHeight():%d\n" +
                         "tvChild.getWindowVisibleDisplayFrame:%s\n" +
                         "tvChild.getLocalVisibleRect:%s\n" +
                         "tvChild.getGlobalVisibleRect:%s\n" +
+                        "tvChild.getGlobalVisibleRect-offset:%s\n" +
                         "toolbar.getHeight():%d\n" +
                         "statuebarHeight:%d\n" +
                         "navigateBarHeight:%d\n",
@@ -218,6 +221,7 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
                 frame.toString(),
                 localVisibleRect.toString(),
                 globalVisibleRect.toString(),
+                offset.toString(),
                 toolbar.getHeight(),
                 frame.top,
                 getWindow().getDecorView().getHeight() - frame.bottom);

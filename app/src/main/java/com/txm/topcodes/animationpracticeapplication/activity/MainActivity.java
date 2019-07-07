@@ -29,7 +29,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.animatedVectorDrawable).setOnClickListener(this);
         findViewById(R.id.btnRevealHide).setOnClickListener(this);
         findViewById(R.id.btnMove).setOnClickListener(this);
+        findViewById(R.id.btnSpring).setOnClickListener(this);
         findViewById(R.id.btnZoom).setOnClickListener(this);
+        findViewById(R.id.btnTransition).setOnClickListener(this);
+        findViewById(R.id.btnDemo).setOnClickListener(this);
     }
 
     @Override
@@ -56,8 +59,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btnMove:
                 MoveActivity.start(this, ((Button) findViewById(R.id.btnMove)).getText().toString());
                 break;
+            case R.id.btnSpring:
+                SpringActivity.start(this);
+                break;
             case R.id.btnZoom:
                 ZoomActivity.start(this, ((Button) findViewById(R.id.btnZoom)).getText().toString());
+                break;
+            case R.id.btnTransition:
+                TransitionAnimateActivity.start(this, ((Button) findViewById(R.id.btnTransition)).getText().toString());
+                break;
+            case R.id.btnDemo:
+                DemoActivity.start(this);
                 break;
         }
     }
