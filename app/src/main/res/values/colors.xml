@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorButton">#c7c6c6</color>
+    <color name="insertButton">#071ff7</color>
+    <color name="changeOfInsertButton">#888889</color>
+    <color name="changeOfRemoveButton">#e9071e</color>
 </resources>

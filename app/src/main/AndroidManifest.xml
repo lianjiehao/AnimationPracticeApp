@@ -40,12 +40,16 @@
             android:name=".activity.ZoomActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TransitionAnimateActivity"
+            android:name=".activity.LayoutTransitionActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.DemoActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LayoutAnimationActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

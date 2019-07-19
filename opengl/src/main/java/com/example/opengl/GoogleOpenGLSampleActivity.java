@@ -81,7 +81,7 @@ public class GoogleOpenGLSampleActivity extends AppCompatActivity {
             GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
             // Set the camera position (View matrix)
-            Matrix.setLookAtM(viewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+            Matrix.setLookAtM(viewMatrix, 0, 0, 0, 3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 
             // Calculate the projection and view transformation
             Matrix.multiplyMM(vPMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
@@ -99,7 +99,7 @@ public class GoogleOpenGLSampleActivity extends AppCompatActivity {
 
             // this projection matrix is applied to object coordinates
             // in the onDrawFrame() method
-            Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+            Matrix.orthoM(projectionMatrix, 0, -ratio, ratio, -1, 1, -1, 3);
         }
 
         public static int loadShader(int type, String shaderCode) {
@@ -120,6 +120,7 @@ public class GoogleOpenGLSampleActivity extends AppCompatActivity {
     static class Triangle {
 
         private FloatBuffer vertexBuffer;
+        private FloatBuffer colorBuffer;
 
         // number of coordinates per vertex in this array
         static final int COORDS_PER_VERTEX = 3;
@@ -130,7 +131,9 @@ public class GoogleOpenGLSampleActivity extends AppCompatActivity {
         };
 
         // Set color with red, green, blue and alpha (opacity) values
-        float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
+        float color[] = {0.0f, 1.0f, 0.0f, 1.0f,
+                1.0f, 0.0f, 0.0f, 1.0f,
+                0.0f, 0.0f, 1.0f, 1.0f};
 
 
         private final String vertexShaderCode =
@@ -138,13 +141,16 @@ public class GoogleOpenGLSampleActivity extends AppCompatActivity {
                 // the coordinates of the objects that use this vertex shader
                 "uniform mat4 uMVPMatrix;" +
                         "attribute vec4 vPosition;" +
+                        "varying  vec4 vColor;" +
+                        "attribute vec4 aColor;" +
                         "void main() {" +
                         "  gl_Position = uMVPMatrix * vPosition;" +
+                        "  vColor=aColor;" +
                         "}";
 
         private final String fragmentShaderCode =
                 "precision mediump float;" +
-                        "uniform vec4 vColor;" +
+                        "varying vec4 vColor;" +
                         "void main() {" +
                         "  gl_FragColor = vColor;" +
                         "}";
@@ -172,6 +178,14 @@ public class GoogleOpenGLSampleActivity extends AppCompatActivity {
             vertexBuffer.put(triangleCoords);
             // set the buffer to read the first coordinate
             vertexBuffer.position(0);
+            //设置片元颜色
+            ByteBuffer dd = ByteBuffer.allocateDirect(
+                    color.length * 4);
+            dd.order(ByteOrder.nativeOrder());
+            colorBuffer = dd.asFloatBuffer();
+            colorBuffer.put(color);
+            colorBuffer.position(0);
+
 
             int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
                     vertexShaderCode);
@@ -208,10 +222,14 @@ public class GoogleOpenGLSampleActivity extends AppCompatActivity {
                     vertexStride, vertexBuffer);
 
             // get handle to fragment shader's vColor member
-            colorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
+            colorHandle = GLES20.glGetAttribLocation(mProgram, "aColor");
 
-            // Set color for drawing the triangle
-            GLES20.glUniform4fv(colorHandle, 1, color, 0);
+            //设置绘制三角形的颜色
+            GLES20.glEnableVertexAttribArray(colorHandle);
+            GLES20.glVertexAttribPointer(colorHandle,3,
+                    GLES20.GL_FLOAT,false,
+                    0,colorBuffer);
+
 
             // get handle to shape's transformation matrix
             vPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
