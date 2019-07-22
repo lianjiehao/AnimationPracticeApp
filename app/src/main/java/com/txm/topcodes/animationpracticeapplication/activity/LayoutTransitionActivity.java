@@ -23,7 +23,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 /**
  * Created by Tangxianming on 2019/1/2.
- * transition动画
+ * 布局动画之LayoutTransition动画
  */
 public class LayoutTransitionActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
     Toolbar toolbar;

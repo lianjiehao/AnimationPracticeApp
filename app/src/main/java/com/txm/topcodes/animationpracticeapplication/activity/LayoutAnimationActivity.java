@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Tangxianming on 2019/3/11.
- * 布局动画之LayoutAnimationActivity
+ * 布局动画之LayoutAnimation动画
  */
 public class LayoutAnimationActivity extends BaseActivity {
     RecyclerView rcvContent;
