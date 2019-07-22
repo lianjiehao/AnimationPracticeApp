@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_scene_root"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="invisible"></RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_scene_delayed_root"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/image_scene_delayed_one"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
+            android:src="@mipmap/ic_mingguo_one" />
+
+        <ImageView
+            android:id="@+id/image_scene_delayed_two"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:src="@mipmap/ic_mingguo_two" />
+
+        <ImageView
+            android:id="@+id/image_scene_delayed_three"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:src="@mipmap/ic_mingguo_three" />
+
+        <ImageView
+            android:id="@+id/image_scene_delayed_four"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:src="@mipmap/ic_mingguo_four" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_scene_transition_toggle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="切换场景动画"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_scene_root" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

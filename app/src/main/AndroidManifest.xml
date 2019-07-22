@@ -49,6 +49,9 @@
         <activity
             android:name=".activity.LayoutAnimationActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SceneTransitionActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
