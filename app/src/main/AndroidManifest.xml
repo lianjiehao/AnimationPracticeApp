@@ -53,6 +53,21 @@
             android:name=".activity.SceneTransitionActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.ActivityContentTransitionAnimationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MaterialAppTheme" />
+
+        <activity
+            android:name=".activity.ActivityTransitionAnimationActivity"
+            android:theme="@style/MaterialAppTheme"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ActivityShareElementTransitionAnimationActivity"
+            android:theme="@style/MaterialAppTheme"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

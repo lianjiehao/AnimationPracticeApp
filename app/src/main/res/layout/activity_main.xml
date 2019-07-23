@@ -79,6 +79,12 @@
             android:text="SceneTransition动画" />
 
         <Button
+            android:id="@+id/btnActivityTransition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ActivityTransition动画" />
+
+        <Button
             android:id="@+id/btnDemo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
