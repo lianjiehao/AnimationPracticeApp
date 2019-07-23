@@ -3,6 +3,8 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.ChangeScroll;
 import android.transition.Scene;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
