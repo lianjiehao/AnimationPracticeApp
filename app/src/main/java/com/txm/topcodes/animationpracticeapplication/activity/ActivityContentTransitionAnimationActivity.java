@@ -16,7 +16,6 @@ import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 /**

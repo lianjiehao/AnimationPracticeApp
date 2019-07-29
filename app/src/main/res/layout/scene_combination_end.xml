@@ -7,12 +7,12 @@
         android:id="@+id/image_scene_start_two"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="8dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
         android:scaleX="0.5"
         android:scaleY="0.5"
-        android:src="@mipmap/ic_mingguo_two"/>
+        android:src="@mipmap/ic_mingguo_two" />
 
     <ImageView
         android:id="@+id/image_scene_start_one"
@@ -21,25 +21,25 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="8dp"
-        android:src="@mipmap/ic_mingguo_one"/>
+        android:src="@mipmap/ic_mingguo_one" />
 
     <ImageView
         android:id="@+id/image_scene_start_four"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="8dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
         android:rotation="90"
-        android:src="@mipmap/ic_mingguo_four"/>
+        android:src="@mipmap/ic_mingguo_four" />
 
     <ImageView
         android:id="@+id/image_scene_start_three"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="8dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:src="@mipmap/ic_mingguo_three"/>
+        android:layout_margin="8dp"
+        android:src="@mipmap/ic_mingguo_three" />
 
 </RelativeLayout>

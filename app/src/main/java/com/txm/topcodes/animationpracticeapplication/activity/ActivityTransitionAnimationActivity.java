@@ -58,12 +58,8 @@ public class ActivityTransitionAnimationActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityTransitionAnimationActivity.this, ActivityContentTransitionAnimationActivity.class);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    startActivity(intent,
-                            ActivityOptions.makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this).toBundle());
-                } else {
-                    startActivity(intent);
-                }
+                startActivity(intent,
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this).toBundle());
             }
         });
         btnShareElementTransition.setOnClickListener(new View.OnClickListener() {
