@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
-import androidx.annotation.Nullable;
-
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,23 +18,30 @@ import android.widget.TextView;
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Tangxianming on 2019/1/2.
  * 坐标系、尺寸、视图层级
  */
-public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
-    RelativeLayout rlParent;
+public class CoordinateActivity extends BaseActivity {
+    @BindView(R.id.tvChild)
     TextView tvChild;
+    @BindView(R.id.rlParent)
+    RelativeLayout rlParent;
+    @BindView(R.id.tvCoordinate)
     TextView tvCoordinate;
+    @BindView(R.id.tvSizeAndLayer)
     TextView tvSizeAndLayer;
+    @BindView(R.id.tvTouchCoodinate)
     TextView tvTouchCoodinate;
-    Toolbar toolbar;
-    String title;
-    private static final String TITLE_EXTRA = "titleExtra";
 
-    public static void start(Context context, String title) {
+
+    public static void start(Context context) {
         Intent starter = new Intent(context, CoordinateActivity.class);
-        starter.putExtra(TITLE_EXTRA, title);
         context.startActivity(starter);
     }
 
@@ -47,14 +51,7 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
     }
 
     @Override
-    public void initListener() {
-        logDebug("onCreate");
-        title = getIntent().getStringExtra(TITLE_EXTRA);
-        rlParent = findViewById(R.id.rlParent);
-        tvChild = findViewById(R.id.tvChild);
-        tvSizeAndLayer = findViewById(R.id.tvSizeAndLayer);
-        tvCoordinate = findViewById(R.id.tvCoordinate);
-        tvTouchCoodinate = findViewById(R.id.tvTouchCoodinate);
+    public void initView() {
         tvChild.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -66,30 +63,43 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
                 return false;
             }
         });
-        initToolbar();
-
     }
 
     @Override
     public void initdata() {
-        testViewTreeObserver();
+
     }
 
 
-    void initToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
-        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
-        toolbar.setOnMenuItemClickListener(this);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+    @Override
+    public void action() {
+        testViewTree();
     }
+
+    @Override
+    public boolean hasToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        logDebug("onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        logDebug("onResume");
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        logDebug("onWindowFocusChanged");
+        tvCoordinate.setText(getCoordinate());
+    }
+
 
     /**
      * 创建菜单
@@ -102,33 +112,28 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
 
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        tvCoordinate.setText(getCoordinate());
-        getWindow().getDecorView().setClickable(true);
-        logDebug("onWindowFocusChanged:");
-    }
-
-    @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.action_coordinate:
+            case R.id.action_coordinate://坐标
                 tvTouchCoodinate.setVisibility(View.VISIBLE);
                 tvSizeAndLayer.setVisibility(View.GONE);
                 tvCoordinate.setVisibility(View.VISIBLE);
                 tvCoordinate.setText(getCoordinate());
+                toolbar.setTitle("坐标");
                 break;
-            case R.id.action_size:
+            case R.id.action_size://区域
                 tvTouchCoodinate.setVisibility(View.GONE);
                 tvSizeAndLayer.setVisibility(View.VISIBLE);
                 tvCoordinate.setVisibility(View.GONE);
                 tvSizeAndLayer.setText(getMetrics() + getRealMetrics() + getHeight());
+                toolbar.setTitle("区域");
                 break;
-            case R.id.action_layer:
+            case R.id.action_layer://视图层级
                 tvTouchCoodinate.setVisibility(View.GONE);
                 tvSizeAndLayer.setVisibility(View.VISIBLE);
                 tvCoordinate.setVisibility(View.GONE);
-                tvSizeAndLayer.setText(getview());
+                tvSizeAndLayer.setText(getViewLayer());
+                toolbar.setTitle("视图层级");
                 break;
         }
         return false;
@@ -203,8 +208,8 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
         Rect localVisibleRect = new Rect();
         tvChild.getLocalVisibleRect(localVisibleRect);
         Rect globalVisibleRect = new Rect();
-        Point offset=new Point();
-        tvChild.getGlobalVisibleRect(globalVisibleRect,offset);
+        Point offset = new Point();
+        tvChild.getGlobalVisibleRect(globalVisibleRect, offset);
         return String.format("findViewById(android.R.id.content).getHeight(): %d\n" +
                         "child.getRootView().getHeight():%d\n" +
                         "getWindow().getDecorView().getHeight():%d\n" +
@@ -232,7 +237,7 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
      *
      * @return
      */
-    String getview() {
+    String getViewLayer() {
         return String.format("findViewById(android.R.id.content):%s\n\n" +
                         "child.getRootView():%s\n\n" +
                         "child.getParent():%s\n\n" +
@@ -245,9 +250,9 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
 
 
     /**
-     * 测试ViewTreeObserver
+     * 测试ViewTree
      */
-    void testViewTreeObserver() {
+    void testViewTree() {
         ViewTreeObserver observer = getWindow().getDecorView().getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -279,13 +284,13 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
                 logDebug("ViewTree-onTouchModeChanged");
             }
         });
-//        observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-//            @Override
-//            public boolean onPreDraw() {
-//                logDebug("onPreDraw");
-//                return true;//注意这里的返回值
-//            }
-//        });
+        observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                logDebug("ViewTree-onPreDraw");
+                return false;//注意这里的返回值
+            }
+        });
         observer.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
             @Override
             public void onWindowFocusChanged(boolean b) {
@@ -303,18 +308,5 @@ public class CoordinateActivity extends BaseActivity implements Toolbar.OnMenuIt
                 logDebug("ViewTree-onWindowDetached");
             }
         });
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        logDebug("onStart:");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        logDebug("onResume:");
     }
 }

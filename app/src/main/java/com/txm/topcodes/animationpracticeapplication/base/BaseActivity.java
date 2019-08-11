@@ -3,10 +3,19 @@ package com.txm.topcodes.animationpracticeapplication.base;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewManager;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.txm.topcodes.animationpracticeapplication.util.LogUtil;
@@ -17,7 +26,9 @@ import com.txm.topcodes.animationpracticeapplication.util.ToastUtils;
  * Created by tangxianming on 2018/4/13.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
+    Unbinder unbinder;
+    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,22 +45,49 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else if (o instanceof View) {
             setContentView((View) o);
         }
-        initListener();
+        unbinder = ButterKnife.bind(this);
+        if (hasToolbar()) {
+            initToolbar();
+        }
+        initView();
         initdata();
+        action();
     }
+
 
     public abstract Object initContentView(@Nullable Bundle savedInstanceState);
 
-    public abstract void initListener();
+    public abstract void initView();
 
     public abstract void initdata();
 
-    public Context getCurrentContext() {
-        return this;
+    public abstract void action();
+
+    public abstract boolean hasToolbar();
+
+    private void initToolbar() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+        toolbar.setOnMenuItemClickListener(this);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
-    public String getLogTag() {
-        return String.format("<%s>", this.getClass().getSimpleName());
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
+
+    public Context getCurrentContext() {
+        return this;
     }
 
     /**
@@ -80,33 +118,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         logMessage(Log.ERROR, msg);
     }
 
-    /**
-     * 展示短时Toast
-     */
-    protected void showShortToast(String msg) {
-        showToast(Toast.LENGTH_SHORT, msg);
-    }
-
-    /**
-     * 展示短时Toast
-     */
-    protected void showShortToast(int resId) {
-        showShortToast(getString(resId));
-    }
-
-    /**
-     * 展示长时Toast
-     */
-    protected void showLongToast(String msg) {
-        showToast(Toast.LENGTH_LONG, msg);
-    }
-
-    /**
-     * 展示长时Toast
-     */
-    protected void showLongToast(int resId) {
-        showLongToast(getString(resId));
-    }
 
     /**
      * 打印日志
@@ -130,12 +141,33 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+
+    private String getLogTag() {
+        return String.format("<%s>", this.getClass().getSimpleName());
+    }
+
+
     /**
-     * 展示Toast
-     *
-     * @param duration
+     * 展示短时Toast
      */
-    private void showToast(int duration, String msg) {
+    protected void showShortToast(String msg) {
         ToastUtils.showShortToast(this, msg);
     }
+
+    /**
+     * 展示长时Toast
+     */
+    protected void showLongToast(String msg) {
+        ToastUtils.showLongToast(this, msg);
+    }
+
+
+    /**
+     * 展示Toast
+     */
+    private void showToast(String msg) {
+        ToastUtils.show(msg);
+    }
+
+
 }

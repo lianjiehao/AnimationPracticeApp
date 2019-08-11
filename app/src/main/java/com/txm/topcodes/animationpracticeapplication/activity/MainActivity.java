@@ -3,6 +3,7 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 import androidx.annotation.Nullable;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,7 +24,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         findViewById(R.id.btnCoordinate).setOnClickListener(this);
         findViewById(R.id.btnViewPropertyAnimation).setOnClickListener(this);
         findViewById(R.id.animatedVectorDrawable).setOnClickListener(this);
@@ -44,13 +45,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return false;
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnCoordinate:
-                CoordinateActivity.start(this, ((Button) findViewById(R.id.btnCoordinate)).getText().toString());
+                CoordinateActivity.start(this);
                 break;
             case R.id.btnViewPropertyAnimation:
-                ViewPropertyAnimationActivity.start(this, ((Button) findViewById(R.id.btnViewPropertyAnimation)).getText().toString());
+                ViewPropertyAnimationActivity.start(this);
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
             case R.id.animatedVectorDrawable:
@@ -84,5 +95,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 ActivityTransitionAnimationActivity.start(this);
                 break;
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
     }
 }
