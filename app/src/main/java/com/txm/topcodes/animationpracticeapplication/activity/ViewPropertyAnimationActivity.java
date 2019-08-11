@@ -36,7 +36,7 @@ import butterknife.OnClick;
 
 /**
  * Created by Tangxianming on 2019/1/17.
- * 视图、属性动画
+ * 补间动画、逐帧动画、属性动画
  */
 public class ViewPropertyAnimationActivity extends BaseActivity {
     @BindView(R.id.ivTween)
@@ -81,10 +81,10 @@ public class ViewPropertyAnimationActivity extends BaseActivity {
 
     @Override
     public void initdata() {
-        //逐帧动画
-        animationDrawable = (AnimationDrawable) ivFrame.getDrawable();
         //补间动画
         translateAnimation = AnimationUtils.loadAnimation(this, R.anim.view_animation);
+        //逐帧动画
+        animationDrawable = (AnimationDrawable) ivFrame.getDrawable();
         //属性动画
         objectAnimator = ObjectAnimator.ofFloat(progressView, "progress", 30f, 280f).setDuration(1000);
         objectAnimator.setInterpolator(new OvershootInterpolator());//设置插值器
