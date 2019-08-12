@@ -170,9 +170,10 @@ public class RevealOrHideActivity extends BaseActivity {
                 .commit();
     }
 
-
+    /**
+     * 揭露方式显示view
+     */
     private void revealVisible() {
-        // Check if the runtime version is at least Lollipop
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // get the center for the clipping circle
             int cx = ivReveal.getWidth() / 2;
@@ -195,6 +196,9 @@ public class RevealOrHideActivity extends BaseActivity {
         btnStartReveal.setTag("1");
     }
 
+    /**
+     * 揭露方式隐藏view
+     */
     private void revealInVisible() {
         // Check if the runtime version is at least Lollipop
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -218,7 +222,7 @@ public class RevealOrHideActivity extends BaseActivity {
             // start the animation
             anim.start();
         } else {
-            // set the view to visible without a circular reveal animation below Lollipop
+            // set the view to invisible without a circular reveal animation below Lollipop
             ivReveal.setVisibility(View.INVISIBLE);
         }
         btnStartReveal.setText("reveal to Visible");

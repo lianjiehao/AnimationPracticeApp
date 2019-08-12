@@ -35,7 +35,7 @@ import androidx.dynamicanimation.animation.FlingAnimation;
 
 /**
  * Created by Tangxianming on 2019/1/2.
- * 移动View
+ * 位置变换动画
  */
 public class MoveActivity extends BaseActivity {
     ImageView ivBalPathInterpolator;

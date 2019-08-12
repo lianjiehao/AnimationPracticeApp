@@ -13,7 +13,7 @@
 
         <Button
             android:id="@+id/btnCoordinate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="坐标、区域、视图层级"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -21,45 +21,45 @@
 
         <Button
             android:id="@+id/btnViewPropertyAnimation"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="视图、属性动画" />
 
         <Button
             android:id="@+id/animatedVectorDrawable"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="矢量图动画" />
 
         <Button
             android:id="@+id/btnRevealHide"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="显示、隐藏动画" />
 
         <Button
             android:id="@+id/btnMove"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Curved、Fling动画" />
+            android:text="路径动画、Fling动画" />
 
 
         <Button
             android:id="@+id/btnZoom"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Zoom动画" />
 
         <Button
             android:id="@+id/btnSpring"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Spring动画" />
 
 
         <Button
             android:id="@+id/btnLayoutAnimation"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LayoutAnimaiton动画"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -68,25 +68,25 @@
 
         <Button
             android:id="@+id/btnLayoutTransition"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LayoutTransition动画" />
 
         <Button
             android:id="@+id/btnSceneTransition"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SceneTransition动画" />
 
         <Button
             android:id="@+id/btnActivityTransition"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ActivityTransition动画" />
 
         <Button
             android:id="@+id/btnDemo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="demo"
             app:layout_constraintLeft_toLeftOf="parent"
