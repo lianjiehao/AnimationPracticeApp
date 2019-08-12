@@ -3,6 +3,8 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -27,7 +29,6 @@ public class DemoActivity extends BaseActivity {
     @Override
     public void initListener() {
         ivDemo = findViewById(R.id.ivDemo);
-
     }
 
     @Override
