@@ -2,7 +2,11 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.ChangeScroll;
+import android.transition.ChangeTransform;
 import android.transition.Scene;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -11,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
+
 import androidx.annotation.Nullable;
 
 /**
@@ -67,7 +73,7 @@ public class SceneTransitionActivity extends BaseActivity {
         /**
          * 切换到开始场景状态
          */
-        TransitionManager.go(mSceneStart);
+        TransitionManager.go(mSceneStart);//或者：mSceneStart.enter();
         mStartSceneState = true;
     }
 
@@ -97,7 +103,7 @@ public class SceneTransitionActivity extends BaseActivity {
      * 两个场景之间相互切换
      */
     private void toggleScene02() {
-        Transition transition=TransitionInflater.from(this)
+        Transition transition = TransitionInflater.from(this)
                 .inflateTransition(
                         R.transition.change_bounds_and_change_transform);
         TransitionManager.beginDelayedTransition(sceneDelayedView, transition);

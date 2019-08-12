@@ -7,12 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +16,6 @@ import android.view.ViewPropertyAnimator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,33 +26,46 @@ import com.txm.topcodes.animationpracticeapplication.view.MProgressView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.OnClick;
+
 /**
  * Created by Tangxianming on 2019/1/17.
- * 视图、属性动画
+ * 补间动画、逐帧动画、属性动画
  */
-public class ViewPropertyAnimationActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener {
-    String title;
-    private static final String TITLE_EXTRA = "titleExtra";
+public class ViewPropertyAnimationActivity extends BaseActivity {
+    @BindView(R.id.ivTween)
     ImageView ivTween;
+    @BindView(R.id.ivFrame)
     ImageView ivFrame;
+    @BindView(R.id.cslFrame)
     ConstraintLayout cslFrame;
-    ConstraintLayout cslProperty;
+    @BindView(R.id.progressView)
     MProgressView progressView;
-    AnimationDrawable animationDrawable;
-    ObjectAnimator objectAnimator;
+    @BindView(R.id.cslProperty)
+    ConstraintLayout cslProperty;
+    @BindView(R.id.rcyContent)
     RecyclerView rcyContent;
-    Button btnListAdd;
-    Button btnListRemove;
+    @BindView(R.id.cslLayoutAnimation)
     ConstraintLayout cslLayoutAnimation;
-    ConstraintLayout cslViewProperty;
-    Button btnContinueViewProperty;
+    @BindView(R.id.ivViewProperty)
     ImageView ivViewProperty;
+    @BindView(R.id.cslViewProperty)
+    ConstraintLayout cslViewProperty;
+
+    AnimationDrawable animationDrawable;
+    Animation translateAnimation;
+    ObjectAnimator objectAnimator;
     List<String> strings = new ArrayList<>();
     StringAdapter stringAdapter;
 
-    public static void start(Context context, String title) {
+    public static void start(Context context) {
         Intent starter = new Intent(context, ViewPropertyAnimationActivity.class);
-        starter.putExtra(TITLE_EXTRA, title);
         context.startActivity(starter);
     }
 
@@ -69,54 +75,30 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
     }
 
     @Override
-    public void initListener() {
-        title = getIntent().getStringExtra(TITLE_EXTRA);
-        ivTween = findViewById(R.id.ivTween);
-        ivFrame = findViewById(R.id.ivFrame);
-        cslFrame = findViewById(R.id.cslFrame);
-        btnListAdd = findViewById(R.id.btnListAdd);
-        btnContinueViewProperty = findViewById(R.id.btnContinueViewProperty);
-        btnContinueViewProperty.setOnClickListener(this);
-        ivViewProperty = findViewById(R.id.ivViewProperty);
-        btnListAdd.setOnClickListener(this);
-        btnListRemove = findViewById(R.id.btnListRemove);
-        btnListRemove.setOnClickListener(this);
-        cslLayoutAnimation = findViewById(R.id.cslLayoutAnimation);
-        cslViewProperty = findViewById(R.id.cslViewProperty);
-        progressView = findViewById(R.id.progressView);
-        cslProperty = findViewById(R.id.cslProperty);
-        rcyContent = findViewById(R.id.rcyContent);
+    public void initView() {
         rcyContent.setLayoutManager(new LinearLayoutManager(this));
-        findViewById(R.id.btnStart).setOnClickListener(this);
-        findViewById(R.id.btnStop).setOnClickListener(this);
-        findViewById(R.id.btnRestart).setOnClickListener(this);
-        initToolbar();
     }
 
     @Override
     public void initdata() {
-        animationDrawable = (AnimationDrawable) ivFrame.getDrawable();//逐帧动画
-        objectAnimator = ObjectAnimator.ofFloat(progressView, "progress", 30f, 280f).setDuration(1000);//属性动画
+        //补间动画
+        translateAnimation = AnimationUtils.loadAnimation(this, R.anim.view_animation);
+        //逐帧动画
+        animationDrawable = (AnimationDrawable) ivFrame.getDrawable();
+        //属性动画
+        objectAnimator = ObjectAnimator.ofFloat(progressView, "progress", 30f, 280f).setDuration(1000);
         objectAnimator.setInterpolator(new OvershootInterpolator());//设置插值器
-        startTweenAnimation();
     }
 
-    /**
-     * 初始化toolbar参数
-     */
-    void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
-        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
-        toolbar.setOnMenuItemClickListener(this);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+    @Override
+    public void action() {
+        //开始补间动画
+        ivTween.startAnimation(translateAnimation);
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return true;
     }
 
 
@@ -138,7 +120,8 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslProperty.setVisibility(View.GONE);
                 cslLayoutAnimation.setVisibility(View.GONE);
                 cslViewProperty.setVisibility(View.GONE);
-                startTweenAnimation();
+                ivTween.startAnimation(translateAnimation);
+                toolbar.setTitle("补间动画");
                 break;
             case R.id.action_layout_animation:
                 ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
@@ -147,6 +130,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslProperty.setVisibility(View.GONE);
                 cslViewProperty.setVisibility(View.GONE);
                 initRecyleView();
+                toolbar.setTitle("LayoutAnimation（布局动画）");
                 break;
             case R.id.action_frame://逐帧动画
                 ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
@@ -156,6 +140,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslViewProperty.setVisibility(View.GONE);
                 animationDrawable.stop();
                 animationDrawable.start();
+                toolbar.setTitle("逐帧动画");
                 break;
             case R.id.action_property://属性动画
                 ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
@@ -164,6 +149,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslLayoutAnimation.setVisibility(View.GONE);
                 cslViewProperty.setVisibility(View.GONE);
                 objectAnimator.start();
+                toolbar.setTitle("属性动画");
                 break;
             case R.id.action_view_property:
                 ivTween.setAlpha(0f);//运用了补间动画的view "setVisibility"方法无效
@@ -171,33 +157,14 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
                 cslProperty.setVisibility(View.GONE);
                 cslLayoutAnimation.setVisibility(View.GONE);
                 cslViewProperty.setVisibility(View.VISIBLE);
+                toolbar.setTitle("ViewPropertyAnimator");
                 break;
         }
         return false;
     }
 
-    /**
-     * 开始补间动画
-     */
-    void startTweenAnimation() {
-        Animation translateAnimation = AnimationUtils.loadAnimation(this, R.anim.view_animation);
-        ivTween.startAnimation(translateAnimation);
-    }
 
-    /**
-     * 初始化list列表
-     */
-    void initRecyleView() {
-        strings.clear();
-        for (int i = 0; i < 10; i++) {
-            strings.add(String.format("ITEM_%d", i));
-        }
-        stringAdapter = new StringAdapter(strings);
-        rcyContent.setAdapter(stringAdapter);
-    }
-
-
-    @Override
+    @OnClick({R.id.btnStart, R.id.btnStop, R.id.btnRestart, R.id.btnListAdd, R.id.btnListRemove, R.id.btnContinueViewProperty})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnStart:
@@ -226,10 +193,24 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
         }
     }
 
+
+    /**
+     * 初始化list列表
+     */
+    void initRecyleView() {
+        strings.clear();
+        for (int i = 0; i < 10; i++) {
+            strings.add(String.format("ITEM_%d", i));
+        }
+        stringAdapter = new StringAdapter(strings);
+        rcyContent.setAdapter(stringAdapter);
+    }
+
+
     /**
      * 此方法验证如下结论：
      * withStartAction() / withEndAction() 是一次性的，在动画执行结束后就自动弃掉了，就算之后再重用  ViewPropertyAnimator 来做别的动画，用它们设置的回调也不会再被调用。
-     * 而 set/addListener() 所设置的 AnimatorListener 是持续有效的，当动画重复执行时，回调总会被调用。
+     * 而 add/setListener() 所设置的 AnimatorListener 是持续有效的，当动画重复执行时，回调总会被调用。
      */
     void viewPropertyAnimatior() {
         final ViewPropertyAnimator viewPropertyAnimator = ivViewProperty.animate();
@@ -278,14 +259,14 @@ public class ViewPropertyAnimationActivity extends BaseActivity implements Toolb
 
         @NonNull
         @Override
-        public StringAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
             MyViewHolder viewHolder = new MyViewHolder(v);
             return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull StringAdapter.MyViewHolder m, int i) {
+        public void onBindViewHolder(@NonNull MyViewHolder m, int i) {
             m.tvString.setText(strings.get(i));
         }
 

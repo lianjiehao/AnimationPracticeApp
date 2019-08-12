@@ -10,7 +10,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        app:title="坐标" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -76,15 +77,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="试试手指触摸child？"
+                android:text="手指试试触摸child"
                 app:layout_constraintLeft_toRightOf="@id/rlParent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/rlParent" />
-            
+
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"/>
-            
+                android:layout_height="1000dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
