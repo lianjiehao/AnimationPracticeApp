@@ -84,5 +84,4 @@
             android:text="reveal to Visible" />
     </RelativeLayout>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

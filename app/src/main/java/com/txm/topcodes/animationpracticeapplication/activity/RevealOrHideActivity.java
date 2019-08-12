@@ -47,7 +47,7 @@ public class RevealOrHideActivity extends BaseActivity {
     private int mShortAnimationDuration;
     boolean showingBack = false;
 
-    public static void start(Context context ) {
+    public static void start(Context context) {
         Intent starter = new Intent(context, RevealOrHideActivity.class);
         context.startActivity(starter);
     }
@@ -124,21 +124,12 @@ public class RevealOrHideActivity extends BaseActivity {
 
 
     private void crossfade() {
-        // Set the content view to 0% opacity but visible, so that it is visible
-        // (but fully transparent) during the animation.
         mContentView.setAlpha(0f);
         mContentView.setVisibility(View.VISIBLE);
-
-        // Animate the content view to 100% opacity, and clear any animation
-        // listener set on the view.
         mContentView.animate()
                 .alpha(1f)
                 .setDuration(mShortAnimationDuration)
                 .setListener(null);
-
-        // Animate the loading view to 0% opacity. After the animation ends,
-        // set its visibility to GONE as an optimization step (it won't
-        // participate in layout passes, etc.)
         mLoadingView.animate()
                 .alpha(0f)
                 .setDuration(mShortAnimationDuration)
@@ -152,41 +143,30 @@ public class RevealOrHideActivity extends BaseActivity {
 
     private void flipCard() {
         if (showingBack) {
-            getSupportFragmentManager().popBackStack();
+            //Flip to the font.
+            showingBack = false;
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    //注意setCustomAnimations()方法必须在add、remove、replace调用之前被设置，否则不起作用。
+                    .setCustomAnimations(
+                            R.animator.card_flip_left_in,
+                            R.animator.card_flip_left_out,
+                            0,
+                            0)
+                    .replace(R.id.flContainer, new CardFrontFragment())
+                    .commit();
             return;
         }
-
         // Flip to the back.
-
         showingBack = true;
-
-        // Create and commit a new fragment transaction that adds the fragment for
-        // the back of the card, uses custom animations, and is part of the fragment
-        // manager's back stack.
-
         getSupportFragmentManager()
                 .beginTransaction()
-
-                // Replace the default fragment animations with animator resources
-                // representing rotations when switching to the back of the card, as
-                // well as animator resources representing rotations when flipping
-                // back to the front (e.g. when the system Back button is pressed).
                 .setCustomAnimations(
                         R.animator.card_flip_right_in,
                         R.animator.card_flip_right_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out)
-
-                // Replace any fragments currently in the container view with a
-                // fragment representing the next page (indicated by the
-                // just-incremented currentPage variable).
+                        0,
+                        0)
                 .replace(R.id.flContainer, new CardBackFragment())
-
-                // Add this transaction to the back stack, allowing users to press
-                // Back to get to the front of the card.
-                .addToBackStack(null)
-
-                // Commit the transaction.
                 .commit();
     }
 

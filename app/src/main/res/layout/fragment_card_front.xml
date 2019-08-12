@@ -4,33 +4,19 @@
     android:layout_height="match_parent"
     android:padding="130dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:gravity="bottom"
-        android:background="#a6c"
-        android:padding="10dp"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#a6c">
 
         <TextView
-            android:id="@android:id/text1"
-            style="?android:textAppearanceLarge"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="标题标题"
-            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:text="FONT"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-        <TextView
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"
-            android:text="描述描述描述述描述描述"
-            android:textAllCaps="true"
-            android:textColor="#80ffffff"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
