@@ -35,10 +35,7 @@ import androidx.fragment.app.Fragment;
  * Created by Tangxianming on 2019/1/2.
  * 显示隐藏View
  */
-public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
-    Toolbar toolbar;
-    String title;
-    private static final String TITLE_EXTRA = "titleExtra";
+public class RevealOrHideActivity extends BaseActivity {
     private View mContentView;
     private View mLoadingView;
     private int mShortAnimationDuration;
@@ -49,9 +46,8 @@ public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenu
     RelativeLayout rlReveal;
     Button btnStartReveal;
 
-    public static void start(Context context, String title) {
+    public static void start(Context context ) {
         Intent starter = new Intent(context, RevealOrHideActivity.class);
-        starter.putExtra(TITLE_EXTRA, title);
         context.startActivity(starter);
     }
 
@@ -61,8 +57,7 @@ public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenu
     }
 
     @Override
-    public void initListener() {
-        title = getIntent().getStringExtra(TITLE_EXTRA);
+    public void initView() {
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_spinner);
         rlCrossfade = findViewById(R.id.rlCrossfade);
@@ -96,7 +91,6 @@ public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenu
 
     @Override
     public void initdata() {
-        initToolbar();
         // 初始化crossfade相关
         mContentView.setVisibility(View.GONE);
         mShortAnimationDuration = getResources().getInteger(
@@ -108,20 +102,14 @@ public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenu
                 .commit();
     }
 
+    @Override
+    public void action() {
 
-    void initToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
-        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
-        toolbar.setOnMenuItemClickListener(this);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return true;
     }
 
     /**
@@ -264,16 +252,19 @@ public class RevealOrHideActivity extends BaseActivity implements Toolbar.OnMenu
                 rlCrossfade.setVisibility(View.VISIBLE);
                 flContainer.setVisibility(View.GONE);
                 rlReveal.setVisibility(View.GONE);
+                toolbar.setTitle("淡入淡出动画");
                 break;
             case R.id.action_card_flip:
                 rlCrossfade.setVisibility(View.GONE);
                 flContainer.setVisibility(View.VISIBLE);
                 rlReveal.setVisibility(View.GONE);
+                toolbar.setTitle("卡片翻转动画");
                 break;
             case R.id.action_circular_reveal:
                 rlCrossfade.setVisibility(View.GONE);
                 flContainer.setVisibility(View.GONE);
                 rlReveal.setVisibility(View.VISIBLE);
+                toolbar.setTitle("揭露动画");
                 break;
         }
         return false;

@@ -6,6 +6,7 @@ import android.transition.Explode;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -34,7 +35,7 @@ public class ActivityContentTransitionAnimationActivity extends BaseActivity {
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setupTransition();
         }
@@ -47,9 +48,23 @@ public class ActivityContentTransitionAnimationActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return false;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
         getWindow().setEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.entertransition));
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }

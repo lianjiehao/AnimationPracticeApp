@@ -11,6 +11,7 @@ import android.transition.Scene;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -48,7 +49,7 @@ public class SceneTransitionActivity extends BaseActivity {
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         sceneRootView = findViewById(R.id.layout_scene_root);
         sceneDelayedView = findViewById(R.id.layout_scene_delayed_root);
         findViewById(R.id.button_scene_transition_toggle).setOnClickListener(new View.OnClickListener() {
@@ -62,6 +63,16 @@ public class SceneTransitionActivity extends BaseActivity {
     @Override
     public void initdata() {
         initData01();
+    }
+
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return false;
     }
 
     ///////////////////////////////////方法一：
@@ -194,4 +205,8 @@ public class SceneTransitionActivity extends BaseActivity {
         mStartSceneState = !mStartSceneState;
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }

@@ -3,6 +3,7 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -15,7 +16,7 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 
 /**
  * Created by Tangxianming on 2019/3/11.
- * 物理动画
+ * Spring动画
  */
 public class SpringActivity extends BaseActivity {
     View ball;
@@ -54,7 +55,7 @@ public class SpringActivity extends BaseActivity {
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         ball = findViewById(R.id.flBall);
         ball.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -93,5 +94,20 @@ public class SpringActivity extends BaseActivity {
     @Override
     public void initdata() {
 
+    }
+
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
     }
 }

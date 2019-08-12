@@ -19,24 +19,16 @@ import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Tangxianming on 2019/1/2.
  * 坐标系、尺寸、视图层级
  */
-public class CoordinateActivity extends BaseActivity {
-    @BindView(R.id.tvChild)
+public class CoordinateActivity extends BaseActivity{
     TextView tvChild;
-    @BindView(R.id.rlParent)
     RelativeLayout rlParent;
-    @BindView(R.id.tvCoordinate)
     TextView tvCoordinate;
-    @BindView(R.id.tvSizeAndLayer)
     TextView tvSizeAndLayer;
-    @BindView(R.id.tvTouchCoodinate)
     TextView tvTouchCoodinate;
 
 
@@ -52,6 +44,11 @@ public class CoordinateActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        tvChild = findViewById(R.id.tvChild);
+        rlParent = findViewById(R.id.rlParent);
+        tvCoordinate = findViewById(R.id.tvCoordinate);
+        tvSizeAndLayer = findViewById(R.id.tvSizeAndLayer);
+        tvTouchCoodinate = findViewById(R.id.tvTouchCoodinate);
         tvChild.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {

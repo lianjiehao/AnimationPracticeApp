@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class ActivityTransitionAnimationActivity extends BaseActivity {
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setupTransition();
         }
@@ -78,6 +79,16 @@ public class ActivityTransitionAnimationActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return false;
+    }
+
     //RequiresApi：告诉程序员这块代码只有在指定版本及以上才能使用，而并不是也不能用来解决兼容问题，指定代码块在低于指定版本上是不能运行通过的！
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
@@ -91,4 +102,8 @@ public class ActivityTransitionAnimationActivity extends BaseActivity {
     }
 
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }

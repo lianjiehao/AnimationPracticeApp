@@ -37,20 +37,16 @@ import androidx.dynamicanimation.animation.FlingAnimation;
  * Created by Tangxianming on 2019/1/2.
  * 移动View
  */
-public class MoveActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
+public class MoveActivity extends BaseActivity {
     ImageView ivBalPathInterpolator;
     ImageView ivBalPathAnimator;
     ImageView ivFling;
-    Toolbar toolbar;
-    String title;
-    private static final String TITLE_EXTRA = "titleExtra";
     RelativeLayout rlFlingAnimator;
     RelativeLayout rlPathInterpolator;
     RelativeLayout rlPathAnimator;
 
-    public static void start(Context context, String title) {
+    public static void start(Context context) {
         Intent starter = new Intent(context, MoveActivity.class);
-        starter.putExtra(TITLE_EXTRA, title);
         context.startActivity(starter);
     }
 
@@ -60,16 +56,14 @@ public class MoveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         logDebug("onCreate");
-        title = getIntent().getStringExtra(TITLE_EXTRA);
         ivBalPathInterpolator = findViewById(R.id.ivBalPathInterpolator);
         ivBalPathAnimator = findViewById(R.id.ivBalPathAnimator);
         ivFling = findViewById(R.id.ivFling);
         rlPathAnimator = findViewById(R.id.rlPathAnimator);
         rlPathInterpolator = findViewById(R.id.rlPathInterpolator);
         rlFlingAnimator = findViewById(R.id.rlFlingAnimator);
-        initToolbar();
         findViewById(R.id.btnStartPathInterpolator).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,21 +120,16 @@ public class MoveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         });
     }
 
+    @Override
+    public void action() {
 
-    void initToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
-        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
-        toolbar.setOnMenuItemClickListener(this);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
+
+    @Override
+    public boolean hasToolbar() {
+        return true;
+    }
+
 
     /**
      * 创建菜单
@@ -159,16 +148,19 @@ public class MoveActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 rlPathAnimator.setVisibility(View.GONE);
                 rlPathInterpolator.setVisibility(View.VISIBLE);
                 rlFlingAnimator.setVisibility(View.GONE);
+                toolbar.setTitle("path类型的插值器动画");
                 break;
             case R.id.action_path_animator://路径动画
                 rlPathAnimator.setVisibility(View.VISIBLE);
                 rlPathInterpolator.setVisibility(View.GONE);
                 rlFlingAnimator.setVisibility(View.GONE);
+                toolbar.setTitle("路径动画");
                 break;
             case R.id.action_fling:
                 rlPathAnimator.setVisibility(View.GONE);
                 rlPathInterpolator.setVisibility(View.GONE);
                 rlFlingAnimator.setVisibility(View.VISIBLE);
+                toolbar.setTitle("Fling动画");
                 break;
         }
         return false;

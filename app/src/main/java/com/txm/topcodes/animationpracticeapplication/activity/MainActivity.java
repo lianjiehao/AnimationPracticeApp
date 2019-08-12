@@ -65,25 +65,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
             case R.id.animatedVectorDrawable:
-                AnimatedVectorDrawableActivity.start(this, ((Button) findViewById(R.id.animatedVectorDrawable)).getText().toString());
+                AnimatedVectorDrawableActivity.start(this);
                 break;
             case R.id.btnRevealHide:
-                RevealOrHideActivity.start(this, ((Button) findViewById(R.id.btnRevealHide)).getText().toString());
+                RevealOrHideActivity.start(this);
                 break;
             case R.id.btnMove:
-                MoveActivity.start(this, ((Button) findViewById(R.id.btnMove)).getText().toString());
+                MoveActivity.start(this);
                 break;
             case R.id.btnSpring:
                 SpringActivity.start(this);
                 break;
             case R.id.btnZoom:
-                ZoomActivity.start(this, ((Button) findViewById(R.id.btnZoom)).getText().toString());
+                ZoomActivity.start(this);
                 break;
             case R.id.btnLayoutTransition:
-                LayoutTransitionActivity.start(this, ((Button) findViewById(R.id.btnLayoutTransition)).getText().toString());
-                break;
-            case R.id.btnDemo:
-                DemoActivity.start(this);
+                LayoutTransitionActivity.start(this);
                 break;
             case R.id.btnLayoutAnimation:
                 LayoutAnimationActivity.start(this);
@@ -93,6 +90,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btnActivityTransition:
                 ActivityTransitionAnimationActivity.start(this);
+                break;
+            case R.id.btnDemo:
+                DemoActivity.start(this);
                 break;
         }
     }

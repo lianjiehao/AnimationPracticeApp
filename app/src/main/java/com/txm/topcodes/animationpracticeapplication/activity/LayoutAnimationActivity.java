@@ -4,6 +4,7 @@ import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class LayoutAnimationActivity extends BaseActivity {
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         rcvContent = findViewById(R.id.rcvContent);
         btnAdd = findViewById(R.id.btnAdd);
         rcvContent.setLayoutManager(new LinearLayoutManager(this));
@@ -70,6 +71,21 @@ public class LayoutAnimationActivity extends BaseActivity {
                 stringAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
     }
 
 

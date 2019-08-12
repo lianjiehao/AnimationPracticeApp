@@ -9,7 +9,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        app:title="淡入淡出动画" />
 
     <RelativeLayout
         android:id="@+id/rlCrossfade"
@@ -70,8 +71,8 @@
             android:id="@+id/ivReveal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="invisible"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorAccent"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnStartReveal"

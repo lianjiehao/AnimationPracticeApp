@@ -29,13 +29,9 @@ import androidx.appcompat.widget.Toolbar;
 
 /**
  * Created by Tangxianming on 2019/1/2.
- * 坐标系、尺寸、视图层级
+ * Zoom动画
  */
 public class ZoomActivity extends BaseActivity {
-    Toolbar toolbar;
-    String title;
-    private static final String TITLE_EXTRA = "titleExtra";
-
     // Hold a reference to the current animator,
     // so that it can be canceled mid-way.
     private Animator currentAnimator;
@@ -45,9 +41,8 @@ public class ZoomActivity extends BaseActivity {
     // very frequently.
     private int shortAnimationDuration;
 
-    public static void start(Context context, String title) {
+    public static void start(Context context) {
         Intent starter = new Intent(context, ZoomActivity.class);
-        starter.putExtra(TITLE_EXTRA, title);
         context.startActivity(starter);
     }
 
@@ -57,10 +52,8 @@ public class ZoomActivity extends BaseActivity {
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         logDebug("onCreate");
-        title = getIntent().getStringExtra(TITLE_EXTRA);
-        initToolbar();
         // Hook up clicks on the thumbnail views.
 
         final View thumb1View = findViewById(R.id.thumb_button_1);
@@ -80,24 +73,15 @@ public class ZoomActivity extends BaseActivity {
                 android.R.integer.config_shortAnimTime);
     }
 
+    @Override
+    public void action() {
 
-
-    void initToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
-        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
-
-
+    @Override
+    public boolean hasToolbar() {
+        return true;
+    }
 
     private void zoomImageFromThumb(final View thumbView, int imageResId) {
         // If there's an animation in progress, cancel it
@@ -250,4 +234,8 @@ public class ZoomActivity extends BaseActivity {
         logDebug("onResume:");
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }

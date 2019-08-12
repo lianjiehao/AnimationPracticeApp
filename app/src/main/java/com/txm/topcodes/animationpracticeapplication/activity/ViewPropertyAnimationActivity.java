@@ -31,31 +31,20 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tangxianming on 2019/1/17.
  * 补间动画、逐帧动画、属性动画
  */
-public class ViewPropertyAnimationActivity extends BaseActivity {
-    @BindView(R.id.ivTween)
+public class ViewPropertyAnimationActivity extends BaseActivity implements View.OnClickListener {
     ImageView ivTween;
-    @BindView(R.id.ivFrame)
     ImageView ivFrame;
-    @BindView(R.id.cslFrame)
     ConstraintLayout cslFrame;
-    @BindView(R.id.progressView)
     MProgressView progressView;
-    @BindView(R.id.cslProperty)
     ConstraintLayout cslProperty;
-    @BindView(R.id.rcyContent)
     RecyclerView rcyContent;
-    @BindView(R.id.cslLayoutAnimation)
     ConstraintLayout cslLayoutAnimation;
-    @BindView(R.id.ivViewProperty)
     ImageView ivViewProperty;
-    @BindView(R.id.cslViewProperty)
     ConstraintLayout cslViewProperty;
 
     AnimationDrawable animationDrawable;
@@ -76,6 +65,21 @@ public class ViewPropertyAnimationActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        ivTween = findViewById(R.id.ivTween);
+        ivFrame = findViewById(R.id.ivFrame);
+        cslFrame = findViewById(R.id.cslFrame);
+        progressView = findViewById(R.id.progressView);
+        cslProperty = findViewById(R.id.cslProperty);
+        rcyContent = findViewById(R.id.rcyContent);
+        cslLayoutAnimation = findViewById(R.id.cslLayoutAnimation);
+        ivViewProperty = findViewById(R.id.ivViewProperty);
+        cslViewProperty = findViewById(R.id.cslViewProperty);
+        findViewById(R.id.btnStart).setOnClickListener(this);
+        findViewById(R.id.btnStop).setOnClickListener(this);
+        findViewById(R.id.btnRestart).setOnClickListener(this);
+        findViewById(R.id.btnListAdd).setOnClickListener(this);
+        findViewById(R.id.btnListRemove).setOnClickListener(this);
+        findViewById(R.id.btnContinueViewProperty).setOnClickListener(this);
         rcyContent.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -163,8 +167,7 @@ public class ViewPropertyAnimationActivity extends BaseActivity {
         return false;
     }
 
-
-    @OnClick({R.id.btnStart, R.id.btnStop, R.id.btnRestart, R.id.btnListAdd, R.id.btnListRemove, R.id.btnContinueViewProperty})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnStart:

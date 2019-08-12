@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,6 @@ public class DemoActivity extends BaseActivity {
         return R.layout.demo_layout;
     }
 
-
-
     private void viewsSetup() {
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +43,7 @@ public class DemoActivity extends BaseActivity {
                 final ViewGroup container = (ViewGroup) button.getParent().getParent();
                 container.getOverlay().add(button);
 
-                ObjectAnimator anim = ObjectAnimator.ofFloat(button, "translationY", container.getHeight()/2);
+                ObjectAnimator anim = ObjectAnimator.ofFloat(button, "translationY", container.getHeight() / 2);
                 ObjectAnimator rotate = ObjectAnimator.ofFloat(button, "rotation", 0, 360);
                 rotate.setDuration(350);
 
@@ -163,8 +162,7 @@ public class DemoActivity extends BaseActivity {
     }
 
     @Override
-    public void initListener() {
-        ivDemo = findViewById(R.id.ivDemo);
+    public void initView() {
         viewsSetup();
     }
 
@@ -173,4 +171,18 @@ public class DemoActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return false;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }

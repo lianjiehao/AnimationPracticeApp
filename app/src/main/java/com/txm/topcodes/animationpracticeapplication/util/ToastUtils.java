@@ -1,14 +1,16 @@
 package com.txm.topcodes.animationpracticeapplication.util;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.yeting.yetinglive.SysApplication;
+
+import com.txm.topcodes.animationpracticeapplication.SysApplication;
 
 import java.util.ArrayList;
+
+import androidx.annotation.StringRes;
 
 /**
  * Created by Tangxianming on 2018/12/19.
@@ -24,7 +26,7 @@ public class ToastUtils {
      */
     public static void showShortToast(Context context, String content) {
         cancelAll();
-        Toast toast = Toast.makeText(SysApplication.getInstance(), null, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(GlobalUtil.INSTANCE.getContext(), null, Toast.LENGTH_SHORT);
         toast.setText(content);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toastList.add(toast);
@@ -39,7 +41,7 @@ public class ToastUtils {
      */
     public static void showLongToast(Context context, String content) {
         cancelAll();
-        Toast toast = Toast.makeText(SysApplication.getInstance(), null, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(GlobalUtil.INSTANCE.getContext(), null, Toast.LENGTH_LONG);
         toast.setText(content);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toastList.add(toast);
@@ -60,14 +62,14 @@ public class ToastUtils {
             return;
         }
         if (text.length() < 10) {
-            showShortToast(SysApplication.getInstance(), (String) text);
+            showShortToast(GlobalUtil.INSTANCE.getContext(), (String) text);
         } else {
-            showLongToast(SysApplication.getInstance(), (String) text);
+            showLongToast(GlobalUtil.INSTANCE.getContext(), (String) text);
         }
     }
 
 
     public static void show(@StringRes int resId) {
-        show(SysApplication.getInstance().getString(resId));
+        show(GlobalUtil.INSTANCE.getContext().getString(resId));
     }
 }

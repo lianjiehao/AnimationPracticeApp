@@ -25,10 +25,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
  * Created by Tangxianming on 2019/1/2.
  * 布局动画之LayoutTransition动画
  */
-public class LayoutTransitionActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
-    Toolbar toolbar;
-    String title;
-    private static final String TITLE_EXTRA = "titleExtra";
+public class LayoutTransitionActivity extends BaseActivity {
     ConstraintLayout cslAutoLayoutTransition;
     LinearLayout llAutoLayoutTransition;
     Button btnAutoLayoutTransitionAdd;
@@ -37,9 +34,8 @@ public class LayoutTransitionActivity extends BaseActivity implements Toolbar.On
     Button btnLayoutTransitionAdd;
     Button btnLayoutTransitionReduce;
 
-    public static void start(Context context, String title) {
+    public static void start(Context context) {
         Intent starter = new Intent(context, LayoutTransitionActivity.class);
-        starter.putExtra(TITLE_EXTRA, title);
         context.startActivity(starter);
     }
 
@@ -49,8 +45,7 @@ public class LayoutTransitionActivity extends BaseActivity implements Toolbar.On
     }
 
     @Override
-    public void initListener() {
-        title = getIntent().getStringExtra(TITLE_EXTRA);
+    public void initView() {
         cslAutoLayoutTransition = findViewById(R.id.cslAutoLayoutTransition);
         llAutoLayoutTransition = findViewById(R.id.llAutoLayoutTransition);
         btnAutoLayoutTransitionAdd = findViewById(R.id.btnAutoLayoutTransitionAdd);
@@ -92,12 +87,21 @@ public class LayoutTransitionActivity extends BaseActivity implements Toolbar.On
                 }
             }
         });
-        initToolbar();
     }
 
     @Override
     public void initdata() {
         initTransition();
+    }
+
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return true;
     }
 
 
@@ -118,9 +122,11 @@ public class LayoutTransitionActivity extends BaseActivity implements Toolbar.On
         switch (menuItem.getItemId()) {
             case R.id.action_auto_layouttransition://自动layoutTransition动画
                 cslAutoLayoutTransition.setVisibility(View.VISIBLE);
+                toolbar.setTitle("自动layoutTransition动画");
                 break;
             case R.id.action_custom_layouttransition://自定义layoutTransition动画
                 cslLayoutTransition.setVisibility(View.VISIBLE);
+                toolbar.setTitle("自定义layoutTransition动画");
                 break;
         }
         return false;
@@ -136,22 +142,6 @@ public class LayoutTransitionActivity extends BaseActivity implements Toolbar.On
         layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, AnimatorInflater.loadAnimator(this, R.animator.anim_color));
         layoutTransition.setAnimator(LayoutTransition.CHANGE_APPEARING, AnimatorInflater.loadAnimator(this, R.animator.layout_change_appearing));
         layoutTransition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, AnimatorInflater.loadAnimator(this, R.animator.layout_change_disappearing));
-    }
-
-
-    void initToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
-        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
-        toolbar.setOnMenuItemClickListener(this);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
 }

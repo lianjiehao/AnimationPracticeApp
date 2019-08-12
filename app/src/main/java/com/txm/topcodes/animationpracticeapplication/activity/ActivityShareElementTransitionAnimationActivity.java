@@ -3,6 +3,7 @@ package com.txm.topcodes.animationpracticeapplication.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
+import android.view.MenuItem;
 
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
@@ -27,7 +28,7 @@ public class ActivityShareElementTransitionAnimationActivity extends BaseActivit
     }
 
     @Override
-    public void initListener() {
+    public void initView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setupTransition();
         }
@@ -40,10 +41,24 @@ public class ActivityShareElementTransitionAnimationActivity extends BaseActivit
 
     }
 
+    @Override
+    public void action() {
+
+    }
+
+    @Override
+    public boolean hasToolbar() {
+        return false;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
         getWindow().setEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.entertransition));
         getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.change_image_transform));
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }
