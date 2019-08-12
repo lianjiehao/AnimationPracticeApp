@@ -13,7 +13,6 @@
         android:background="@color/colorPrimary"
         app:title="矢量图动画(单个文件方式)" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cslAnimationSingleFile"
         android:layout_width="match_parent"
@@ -90,14 +89,17 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnStartTrimClip"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="start"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            android:layout_marginTop="20dp"
+            android:text="点击上方图标看效果"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/ivAnimationTrimClip"
+            app:layout_constraintRight_toRightOf="@id/ivAnimationTrimClip"
+            app:layout_constraintTop_toBottomOf="@id/ivAnimationTrimClip" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -112,13 +114,25 @@
 
         <CheckBox
             android:id="@+id/ckAnimatorSelector"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:button="@drawable/animated_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="点击上方图标看效果"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/ckAnimatorSelector"
+            app:layout_constraintRight_toRightOf="@id/ckAnimatorSelector"
+            app:layout_constraintTop_toBottomOf="@id/ckAnimatorSelector" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

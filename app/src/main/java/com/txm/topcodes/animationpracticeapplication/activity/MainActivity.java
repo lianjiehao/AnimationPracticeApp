@@ -57,17 +57,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnCoordinate:
+            case R.id.btnCoordinate://坐标系、尺寸、视图层级
                 CoordinateActivity.start(this);
                 break;
-            case R.id.btnViewPropertyAnimation:
+            case R.id.btnViewPropertyAnimation://视图、属性动画
                 ViewPropertyAnimationActivity.start(this);
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
-            case R.id.animatedVectorDrawable:
+            case R.id.animatedVectorDrawable://矢量图动画
                 AnimatedVectorDrawableActivity.start(this);
                 break;
-            case R.id.btnRevealHide:
+            case R.id.btnRevealHide://显示、隐藏动画
                 RevealOrHideActivity.start(this);
                 break;
             case R.id.btnMove:

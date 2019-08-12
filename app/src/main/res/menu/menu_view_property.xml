@@ -10,7 +10,7 @@
     <item
         android:id="@+id/action_layout_animation"
         android:orderInCategory="80"
-        android:title="LayoutAnimation"
+        android:title="LayoutAnimation(布局动画)"
         app:showAsAction="never" />
 
     <item
@@ -28,7 +28,7 @@
     <item
         android:id="@+id/action_view_property"
         android:orderInCategory="110"
-        android:title="ViewPropertyAnimator"
+        android:title="ViewPropertyAnimator（属性动画）"
         app:showAsAction="never" />
 
 

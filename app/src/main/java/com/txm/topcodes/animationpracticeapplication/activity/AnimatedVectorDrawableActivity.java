@@ -43,10 +43,10 @@ public class AnimatedVectorDrawableActivity extends BaseActivity {
     @Override
     public void initView() {
         cslAnimationSingleFile = findViewById(R.id.cslAnimationSingleFile);
+        ivAnimationSingleFile = findViewById(R.id.ivAnimationSingleFile);
         cslAnimationThreeFile = findViewById(R.id.cslAnimationThreeFile);
         cslAnimationTrimClip = findViewById(R.id.cslAnimationTrimClip);
         cslAnimatorSelector = findViewById(R.id.cslAnimatorSelector);
-        ivAnimationSingleFile = findViewById(R.id.ivAnimationSingleFile);
         findViewById(R.id.btnStartSingleFile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,7 +132,7 @@ public class AnimatedVectorDrawableActivity extends BaseActivity {
                 cslAnimationThreeFile.setVisibility(View.GONE);
                 cslAnimationTrimClip.setVisibility(View.GONE);
                 cslAnimatorSelector.setVisibility(View.VISIBLE);
-                toolbar.setTitle("矢量图动画(切换动画)");
+                toolbar.setTitle("矢量图动画(动画切换)");
                 break;
         }
         return false;

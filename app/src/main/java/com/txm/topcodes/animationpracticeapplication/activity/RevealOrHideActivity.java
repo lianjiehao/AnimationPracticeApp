@@ -33,18 +33,19 @@ import androidx.fragment.app.Fragment;
 
 /**
  * Created by Tangxianming on 2019/1/2.
- * 显示隐藏View
+ * 显示、隐藏动画
  */
 public class RevealOrHideActivity extends BaseActivity {
     private View mContentView;
     private View mLoadingView;
-    private int mShortAnimationDuration;
-    boolean showingBack = false;
     RelativeLayout rlCrossfade;
     FrameLayout flContainer;
     ImageView ivReveal;
     RelativeLayout rlReveal;
     Button btnStartReveal;
+
+    private int mShortAnimationDuration;
+    boolean showingBack = false;
 
     public static void start(Context context ) {
         Intent starter = new Intent(context, RevealOrHideActivity.class);
