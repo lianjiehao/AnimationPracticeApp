@@ -7,9 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 import android.util.Log;
 import android.view.MotionEvent;
@@ -27,7 +24,6 @@ import com.txm.topcodes.animationpracticeapplication.util.ToastUtils;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
-    Unbinder unbinder;
     protected Toolbar toolbar;
 
     @Override
@@ -45,7 +41,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
         } else if (o instanceof View) {
             setContentView((View) o);
         }
-        unbinder = ButterKnife.bind(this);
         if (hasToolbar()) {
             initToolbar();
         }
@@ -83,7 +78,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
     }
 
     public Context getCurrentContext() {

@@ -285,7 +285,7 @@ public class CoordinateActivity extends BaseActivity{
             @Override
             public boolean onPreDraw() {
                 logDebug("ViewTree-onPreDraw");
-                return false;//注意这里的返回值
+                return true;//注意这里的返回值
             }
         });
         observer.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
