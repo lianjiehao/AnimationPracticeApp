@@ -33,9 +33,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FlingAnimation;
 
+import static androidx.dynamicanimation.animation.DynamicAnimation.MIN_VISIBLE_CHANGE_ALPHA;
+import static androidx.dynamicanimation.animation.DynamicAnimation.MIN_VISIBLE_CHANGE_SCALE;
+
 /**
  * Created by Tangxianming on 2019/1/2.
- * 位置变换动画
+ * 插值器和估值器补充、Fling动画
  */
 public class MoveActivity extends BaseActivity {
     ImageView ivBalPathInterpolator;
@@ -76,12 +79,6 @@ public class MoveActivity extends BaseActivity {
                 startPathAnimator();
             }
         });
-        findViewById(R.id.btnResetFling).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetFling();
-            }
-        });
     }
 
     @Override
@@ -91,6 +88,7 @@ public class MoveActivity extends BaseActivity {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 logDebug(String.format("velocityX=%f;velocityY=%f", velocityX, velocityY));
+                //FloatPropertyCompat不适用的例子
                 //定义x方向的fling
                 FlingAnimation flingAnimationX = new FlingAnimation(ivFling, DynamicAnimation.X);
                 flingAnimationX.setStartVelocity(velocityX);
@@ -148,13 +146,13 @@ public class MoveActivity extends BaseActivity {
                 rlPathAnimator.setVisibility(View.GONE);
                 rlPathInterpolator.setVisibility(View.VISIBLE);
                 rlFlingAnimator.setVisibility(View.GONE);
-                toolbar.setTitle("path类型的插值器动画");
+                toolbar.setTitle("Path类型的插值器");
                 break;
             case R.id.action_path_animator://路径动画
                 rlPathAnimator.setVisibility(View.VISIBLE);
                 rlPathInterpolator.setVisibility(View.GONE);
                 rlFlingAnimator.setVisibility(View.GONE);
-                toolbar.setTitle("路径动画");
+                toolbar.setTitle("估值器快速实现路径动画");
                 break;
             case R.id.action_fling:
                 rlPathAnimator.setVisibility(View.GONE);
@@ -167,13 +165,11 @@ public class MoveActivity extends BaseActivity {
     }
 
     /**
-     * path类型的插值器动画(自定义插值器的简便方法)
+     * Path类型的插值器(自定义插值器的简便方法)
      */
     void startPathInterpolatorAnimator() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Path path = new Path();
-            path.lineTo(0.25f, 0.25f);
-            path.moveTo(0.25f, 0.5f);
             path.lineTo(1f, 1f);
             PathInterpolator pathInterpolator = new PathInterpolator(path);
             ObjectAnimator animator = ObjectAnimator.ofFloat(ivBalPathInterpolator, "translationY", 800f);
@@ -205,13 +201,4 @@ public class MoveActivity extends BaseActivity {
             objectAnimator.start();
         }
     }
-
-    /**
-     * 重置fling对象的位置
-     */
-    public void resetFling() {
-        ivFling.setX(SystemUtil.getScreenWidth() / 2f - ivFling.getMeasuredWidth() / 2f);
-        ivFling.setY(0);
-    }
-
 }

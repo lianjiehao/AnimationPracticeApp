@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        app:title="Spring动画" />
+        app:title="物理动画" />
 
 
     <FrameLayout

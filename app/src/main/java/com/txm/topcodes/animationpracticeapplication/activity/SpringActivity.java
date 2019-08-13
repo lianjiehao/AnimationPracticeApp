@@ -16,7 +16,7 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 
 /**
  * Created by Tangxianming on 2019/3/11.
- * Spring动画
+ * 物理动画
  */
 public class SpringActivity extends BaseActivity {
     View ball;

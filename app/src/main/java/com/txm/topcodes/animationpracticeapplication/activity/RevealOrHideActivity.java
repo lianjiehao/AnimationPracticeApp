@@ -33,7 +33,7 @@ import androidx.fragment.app.Fragment;
 
 /**
  * Created by Tangxianming on 2019/1/2.
- * 显示、隐藏动画
+ * 淡入淡出、翻牌、揭露动画
  */
 public class RevealOrHideActivity extends BaseActivity {
     private View mContentView;

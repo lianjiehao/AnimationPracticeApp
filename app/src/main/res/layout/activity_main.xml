@@ -35,33 +35,36 @@
             android:id="@+id/btnRevealHide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="显示、隐藏动画" />
+            android:text="淡入淡出、翻牌、揭露动画" />
 
         <Button
             android:id="@+id/btnMove"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="路径动画、Fling动画" />
+            android:text="插值器和估值器补充、Fling动画" />
+
+
+        <Button
+            android:id="@+id/btnSpring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="物理动画" />
+
 
 
         <Button
             android:id="@+id/btnZoom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zoom动画" />
+            android:text="放大缩小动画" />
 
-        <Button
-            android:id="@+id/btnSpring"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Spring动画" />
 
 
         <Button
             android:id="@+id/btnLayoutAnimation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LayoutAnimaiton动画"
+            android:text="布局动画之LayoutAnimaiton动画"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
@@ -70,7 +73,7 @@
             android:id="@+id/btnLayoutTransition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LayoutTransition动画" />
+            android:text="布局动画之LayoutTransition动画" />
 
         <Button
             android:id="@+id/btnSceneTransition"

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -122,11 +123,11 @@ public class LayoutTransitionActivity extends BaseActivity {
         switch (menuItem.getItemId()) {
             case R.id.action_auto_layouttransition://自动layoutTransition动画
                 cslAutoLayoutTransition.setVisibility(View.VISIBLE);
-                toolbar.setTitle("自动layoutTransition动画");
+                toolbar.setTitle("默认LayoutTransition动画");
                 break;
             case R.id.action_custom_layouttransition://自定义layoutTransition动画
                 cslLayoutTransition.setVisibility(View.VISIBLE);
-                toolbar.setTitle("自定义layoutTransition动画");
+                toolbar.setTitle("自定义LayoutTransition动画");
                 break;
         }
         return false;
@@ -136,9 +137,7 @@ public class LayoutTransitionActivity extends BaseActivity {
     public void initTransition() {
         LayoutTransition layoutTransition = new LayoutTransition();
         llLayoutTransition.setLayoutTransition(layoutTransition);
-        //View出現的動畫
         layoutTransition.setAnimator(LayoutTransition.APPEARING, AnimatorInflater.loadAnimator(this, R.animator.anim_scale_x));
-        //元素在容器中消失時需要動畫顯示
         layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, AnimatorInflater.loadAnimator(this, R.animator.anim_color));
         layoutTransition.setAnimator(LayoutTransition.CHANGE_APPEARING, AnimatorInflater.loadAnimator(this, R.animator.layout_change_appearing));
         layoutTransition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, AnimatorInflater.loadAnimator(this, R.animator.layout_change_disappearing));

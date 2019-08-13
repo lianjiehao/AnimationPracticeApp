@@ -4,13 +4,13 @@
     <item
         android:id="@+id/action_path_interpolator"
         android:orderInCategory="80"
-        android:title="path类型的插值器"
+        android:title="Path类型的插值器"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_path_animator"
         android:orderInCategory="80"
-        android:title="路径动画"
+        android:title="估值器快速实现路径动画"
         app:showAsAction="never" />
 
     <item

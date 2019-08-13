@@ -67,22 +67,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.animatedVectorDrawable://矢量图动画
                 AnimatedVectorDrawableActivity.start(this);
                 break;
-            case R.id.btnRevealHide://显示、隐藏动画
+            case R.id.btnRevealHide://淡入淡出、翻牌、揭露动画
                 RevealOrHideActivity.start(this);
                 break;
-            case R.id.btnMove:
+            case R.id.btnMove://插值器和估值器补充、Fling动画
                 MoveActivity.start(this);
                 break;
-            case R.id.btnSpring:
+            case R.id.btnSpring://物理动画
                 SpringActivity.start(this);
                 break;
-            case R.id.btnZoom:
+            case R.id.btnZoom://放大缩小动画
                 ZoomActivity.start(this);
                 break;
-            case R.id.btnLayoutTransition:
+            case R.id.btnLayoutTransition://布局动画之LayoutTransition动画
                 LayoutTransitionActivity.start(this);
                 break;
-            case R.id.btnLayoutAnimation:
+            case R.id.btnLayoutAnimation://布局动画之LayoutAnimation动画
                 LayoutAnimationActivity.start(this);
                 break;
             case R.id.btnSceneTransition:

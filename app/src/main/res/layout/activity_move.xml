@@ -8,9 +8,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        app:title="path类型的插值器动画"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        app:title="Path类型的插值器" />
 
     <RelativeLayout
         android:id="@+id/rlPathInterpolator"
@@ -76,15 +76,17 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_sentiment_satisfied_black_48dp" />
+            android:src="@drawable/shape_ball" />
 
-        <Button
-            android:id="@+id/btnResetFling"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="reset" />
+            android:layout_marginBottom="40dp"
+            android:text="手指试试滑动一下屏幕~"
+            android:textColor="#666666"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

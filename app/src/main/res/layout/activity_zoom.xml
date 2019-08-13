@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        app:title="Zoom动画" />
+        app:title="放大缩小动画" />
 
     <FrameLayout
         android:id="@+id/container"
