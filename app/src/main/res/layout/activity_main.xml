@@ -79,7 +79,7 @@
             android:id="@+id/btnSceneTransition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SceneTransition动画" />
+            android:text="过渡动画之场景切换" />
 
         <Button
             android:id="@+id/btnActivityTransition"

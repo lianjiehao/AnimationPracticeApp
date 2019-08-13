@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 /**
  * @author :created by tangxianming
  * @date: 2019/7/22
- * @desc: Android过渡动画之场景切换
+ * @desc: 过渡动画之场景切换
  */
 public class SceneTransitionActivity extends BaseActivity {
     ViewGroup sceneRootView;
