@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.Slide;
+import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -26,26 +27,23 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
  * 不带共享元素的Content Transition
  */
 public class ActivityContentTransitionAnimationActivity extends BaseActivity {
-    Toolbar toolbar;
     @Override
     public Object initContentView(@Nullable Bundle savedInstanceState) {
         // inside your activity (if you did not enable transitions in your theme)
-        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         return R.layout.activity_activity_content_transition_animation;
     }
 
     @Override
     public void initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setupTransition();
-        }
-        toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
     }
 
     @Override
     public void initdata() {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setupTransition();
+        }
     }
 
     @Override
@@ -55,16 +53,23 @@ public class ActivityContentTransitionAnimationActivity extends BaseActivity {
 
     @Override
     public boolean hasToolbar() {
-        return false;
+        return true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
-        getWindow().setEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.entertransition));
+        Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.entertransition);
+        transition.setDuration(1000);
+        transition.excludeTarget(android.R.id.statusBarBackground, true);
+        transition.excludeTarget(android.R.id.navigationBarBackground, true);
+        transition.excludeTarget(R.id.appbar, true);
+        getWindow().setEnterTransition(transition);
     }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         return false;
     }
+
+
 }

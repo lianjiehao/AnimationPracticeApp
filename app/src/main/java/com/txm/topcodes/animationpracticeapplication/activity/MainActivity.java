@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
@@ -85,14 +84,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btnLayoutAnimation://布局动画之LayoutAnimation动画
                 LayoutAnimationActivity.start(this);
                 break;
-            case R.id.btnSceneTransition:
+            case R.id.btnSceneTransition://过渡动画之场景切换
                 SceneTransitionActivity.start(this);
                 break;
-            case R.id.btnActivityTransition:
+            case R.id.btnActivityTransition://过渡动画之界面过渡
                 ActivityTransitionAnimationActivity.start(this);
                 break;
-            case R.id.btnDemo:
-                DemoActivity.start(this);
+            case R.id.btnDemo://Overlay使用
+                OverlayActivity.start(this);
                 break;
         }
     }

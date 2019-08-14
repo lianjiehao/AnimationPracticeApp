@@ -19,7 +19,7 @@ import androidx.appcompat.widget.Toolbar;
  * 共享元素的ShareElement Transition
  */
 public class ActivityShareElementTransitionAnimationActivity extends BaseActivity {
-    Toolbar toolbar;
+
     @Override
     public Object initContentView(@Nullable Bundle savedInstanceState) {
         // inside your activity (if you did not enable transitions in your theme)
@@ -29,16 +29,14 @@ public class ActivityShareElementTransitionAnimationActivity extends BaseActivit
 
     @Override
     public void initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setupTransition();
-        }
-        toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
     }
 
     @Override
     public void initdata() {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setupTransition();
+        }
     }
 
     @Override
@@ -48,7 +46,7 @@ public class ActivityShareElementTransitionAnimationActivity extends BaseActivit
 
     @Override
     public boolean hasToolbar() {
-        return false;
+        return true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

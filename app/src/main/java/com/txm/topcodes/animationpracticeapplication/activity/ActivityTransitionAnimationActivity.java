@@ -25,14 +25,13 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 /**
  * @author :created by tangxianming
  * @date: 2019/7/23
- * @desc: Android过渡动画之界面过渡：
- * 1、不带共享元素的Content Transition
- * 2、带共享元素的ShareElement Transition
+ * @desc: 过渡动画之界面过渡：
+ * 1、不带共享元素(Content Transition)
+ * 2、带共享元素(ShareElement Transition)
  */
-public class ActivityTransitionAnimationActivity extends BaseActivity {
+public class ActivityTransitionAnimationActivity extends BaseActivity implements View.OnClickListener {
     Button btnContentTransition;
     Button btnShareElementTransition;
-    Toolbar toolbar;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ActivityTransitionAnimationActivity.class);
@@ -48,35 +47,17 @@ public class ActivityTransitionAnimationActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setupTransition();
-        }
         btnContentTransition = findViewById(R.id.btnContentTransition);
+        btnContentTransition.setOnClickListener(this);
         btnShareElementTransition = findViewById(R.id.btnShareElementTransition);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        btnContentTransition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityTransitionAnimationActivity.this, ActivityContentTransitionAnimationActivity.class);
-                startActivity(intent,
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this).toBundle());
-            }
-        });
-        btnShareElementTransition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityTransitionAnimationActivity.this, ActivityShareElementTransitionAnimationActivity.class);
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this, btnShareElementTransition, getString(R.string.planet_transition_item));
-                startActivity(intent, options.toBundle());
-            }
-        });
+        btnShareElementTransition.setOnClickListener(this);
     }
 
     @Override
     public void initdata() {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setupTransition();
+        }
     }
 
     @Override
@@ -86,10 +67,11 @@ public class ActivityTransitionAnimationActivity extends BaseActivity {
 
     @Override
     public boolean hasToolbar() {
-        return false;
+        return true;
     }
 
-    //RequiresApi：告诉程序员这块代码只有在指定版本及以上才能使用，而并不是也不能用来解决兼容问题，指定代码块在低于指定版本上是不能运行通过的！
+    //RequiresApi：告诉程序员这块代码只有在指定版本及以上才能使用，而并不是也不能用来解决兼容问题，
+    // 指定代码块在低于指定版本上是不能运行通过的！
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
         Slide slide = new Slide(Gravity.LEFT);
@@ -105,5 +87,24 @@ public class ActivityTransitionAnimationActivity extends BaseActivity {
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnContentTransition: {
+                Intent intent = new Intent(ActivityTransitionAnimationActivity.this, ActivityContentTransitionAnimationActivity.class);
+                startActivity(intent,
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this).toBundle());
+            }
+            break;
+            case R.id.btnShareElementTransition: {
+                Intent intent = new Intent(ActivityTransitionAnimationActivity.this, ActivityShareElementTransitionAnimationActivity.class);
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this, btnShareElementTransition, getString(R.string.planet_transition_item));
+                startActivity(intent, options.toBundle());
+                break;
+            }
+        }
     }
 }

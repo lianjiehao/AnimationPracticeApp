@@ -44,7 +44,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.DemoActivity"
+            android:name=".activity.OverlayActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LayoutAnimationActivity"
@@ -54,14 +54,14 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.ActivityContentTransitionAnimationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/MaterialAppTheme" />
-
-        <activity
             android:name=".activity.ActivityTransitionAnimationActivity"
             android:theme="@style/MaterialAppTheme"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ActivityContentTransitionAnimationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MaterialAppTheme" />
 
         <activity
             android:name=".activity.ActivityShareElementTransitionAnimationActivity"

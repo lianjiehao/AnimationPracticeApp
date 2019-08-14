@@ -16,9 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
+import com.txm.topcodes.animationpracticeapplication.util.SystemUtil;
 
 import androidx.annotation.Nullable;
 
@@ -28,6 +30,7 @@ import androidx.annotation.Nullable;
  * @desc: 过渡动画之场景切换
  */
 public class SceneTransitionActivity extends BaseActivity {
+    TextView tvChild;
     ViewGroup sceneRootView;
     ViewGroup sceneDelayedView;
     private ImageView mImageOne;
@@ -50,6 +53,7 @@ public class SceneTransitionActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        tvChild = findViewById(R.id.tvChild);
         sceneRootView = findViewById(R.id.layout_scene_root);
         sceneDelayedView = findViewById(R.id.layout_scene_delayed_root);
         findViewById(R.id.button_scene_transition_toggle).setOnClickListener(new View.OnClickListener() {
@@ -72,7 +76,7 @@ public class SceneTransitionActivity extends BaseActivity {
 
     @Override
     public boolean hasToolbar() {
-        return false;
+        return true;
     }
 
     ///////////////////////////////////方法一：
@@ -204,7 +208,6 @@ public class SceneTransitionActivity extends BaseActivity {
         }
         mStartSceneState = !mStartSceneState;
     }
-
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         return false;

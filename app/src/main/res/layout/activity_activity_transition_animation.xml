@@ -13,7 +13,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            app:title="Android过渡动画之界面过渡"
+            app:title="过渡动画之界面过渡"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary" />
 
@@ -32,15 +32,15 @@
 
         <Button
             android:id="@+id/btnContentTransition"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Content Transition" />
+            android:text="不带共享元素(Content Transition)" />
 
         <Button
             android:id="@+id/btnShareElementTransition"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ShareElement Transition"
+            android:text="带共享元素(ShareElement Transition)"
             android:transitionName="@string/planet_transition_item" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

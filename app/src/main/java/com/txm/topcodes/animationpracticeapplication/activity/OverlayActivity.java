@@ -6,31 +6,29 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
 
 import androidx.annotation.Nullable;
 
-public class DemoActivity extends BaseActivity {
-    ImageView ivDemo;
+/**
+ * Overlay使用
+ */
+public class OverlayActivity extends BaseActivity {
 
     public static void start(Context context) {
-        Intent starter = new Intent(context, DemoActivity.class);
+        Intent starter = new Intent(context, OverlayActivity.class);
         context.startActivity(starter);
     }
 
     @Override
     public Object initContentView(@Nullable Bundle savedInstanceState) {
-        return R.layout.demo_layout;
+        return R.layout.activity_overlay;
     }
 
     private void viewsSetup() {
@@ -64,12 +62,12 @@ public class DemoActivity extends BaseActivity {
 
                     @Override
                     public void onAnimationEnd(Animator arg0) {
-//                        container.getOverlay().remove(button);
+                        container.getOverlay().remove(button);
                     }
 
                     @Override
                     public void onAnimationCancel(Animator arg0) {
-//                        container.getOverlay().remove(button);
+                        container.getOverlay().remove(button);
                     }
                 });
 
@@ -178,7 +176,7 @@ public class DemoActivity extends BaseActivity {
 
     @Override
     public boolean hasToolbar() {
-        return false;
+        return true;
     }
 
     @Override
