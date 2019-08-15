@@ -24,7 +24,7 @@ public class ActivityShareElementTransitionAnimationActivity extends BaseActivit
     public Object initContentView(@Nullable Bundle savedInstanceState) {
         // inside your activity (if you did not enable transitions in your theme)
         //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        return R.layout.activity_activity_content_transition_animation;
+        return R.layout.activity_activity_share_element_transition_animation;
     }
 
     @Override
