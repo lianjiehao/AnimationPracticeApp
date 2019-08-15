@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
+import android.transition.Fade;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.txm.topcodes.animationpracticeapplication.R;
@@ -40,6 +42,9 @@ public class ActivityTransitionAnimationActivity extends BaseActivity implements
 
     @Override
     public Object initContentView(@Nullable Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         // inside your activity (if you did not enable transitions in your theme)
         //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         return R.layout.activity_activity_transition_animation;
@@ -75,7 +80,7 @@ public class ActivityTransitionAnimationActivity extends BaseActivity implements
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
         Slide slide = new Slide(Gravity.LEFT);
-        slide.setDuration(1000);
+//        slide.setDuration(1000);//一些机型在设置了时长会导致返回这个页面时，UI状态无法恢复。
         slide.excludeTarget(android.R.id.statusBarBackground, true);
         slide.excludeTarget(android.R.id.navigationBarBackground, true);
         slide.excludeTarget(R.id.appbar, true);

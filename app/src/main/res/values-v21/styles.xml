@@ -12,7 +12,7 @@
         <!-- Customize your theme here. -->
         <item name="android:navigationBarColor">#666666</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">false</item>
     </style>
 
