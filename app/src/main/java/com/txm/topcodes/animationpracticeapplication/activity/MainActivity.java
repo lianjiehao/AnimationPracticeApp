@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btnActivityTransition://过渡动画之界面过渡
                 ActivityTransitionAnimationActivity.start(this);
                 break;
-            case R.id.btnDemo://Overlay使用
+            case R.id.btnDemo://Overlay使用(入口已隐藏，需要看时打开)
                 OverlayActivity.start(this);
                 break;
         }

@@ -5,12 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
+import android.transition.TransitionInflater;
+import android.transition.TransitionSet;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -18,11 +22,14 @@ import android.widget.Button;
 import com.txm.topcodes.animationpracticeapplication.R;
 import com.txm.topcodes.animationpracticeapplication.base.BaseActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.core.util.Pair;
 
 /**
  * @author :created by tangxianming
@@ -42,8 +49,6 @@ public class ActivityTransitionAnimationActivity extends BaseActivity implements
 
     @Override
     public Object initContentView(@Nullable Bundle savedInstanceState) {
-        // inside your activity (if you did not enable transitions in your theme)
-        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         return R.layout.activity_activity_transition_animation;
     }
 
@@ -65,6 +70,7 @@ public class ActivityTransitionAnimationActivity extends BaseActivity implements
     @Override
     public void action() {
 
+
     }
 
     @Override
@@ -72,38 +78,46 @@ public class ActivityTransitionAnimationActivity extends BaseActivity implements
         return true;
     }
 
-    //RequiresApi：告诉程序员这块代码只有在指定版本及以上才能使用，而并不是也不能用来解决兼容问题，
-    // 指定代码块在低于指定版本上是不能运行通过的！
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupTransition() {
         Slide slide = new Slide(Gravity.LEFT);
-//        slide.setDuration(1000);//一些机型在设置了时长会导致返回这个页面时，UI状态无法恢复。
-        slide.excludeTarget(android.R.id.statusBarBackground, true);
-        slide.excludeTarget(android.R.id.navigationBarBackground, true);
-        slide.excludeTarget(R.id.appbar, true);
-        slide.setInterpolator(new FastOutSlowInInterpolator());
         getWindow().setExitTransition(slide);
     }
-
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         return false;
     }
 
+    private List<Pair<View, String>> getPairs() {
+        View statusBar = findViewById(android.R.id.statusBarBackground);
+        View navigationBar = findViewById(android.R.id.navigationBarBackground);
+        View appBar = findViewById(R.id.appbar);
+        List<Pair<View, String>> pairs = new ArrayList<>();
+        pairs.add(Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME));
+        pairs.add(Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME));
+        pairs.add(Pair.create(appBar, "appbar"));
+        return pairs;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnContentTransition: {
+                List<Pair<View, String>> pairs = getPairs();
                 Intent intent = new Intent(ActivityTransitionAnimationActivity.this, ActivityContentTransitionAnimationActivity.class);
                 startActivity(intent,
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this).toBundle());
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this, pairs.toArray(new Pair[pairs.size()])).toBundle());
+                break;
             }
-            break;
             case R.id.btnShareElementTransition: {
+                List<Pair<View, String>> pairs = getPairs();
+                Pair<View, String> pair = new Pair<View, String>(btnShareElementTransition, getString(R.string.planet_transition_item));
+                pairs.add(pair);
                 Intent intent = new Intent(ActivityTransitionAnimationActivity.this, ActivityShareElementTransitionAnimationActivity.class);
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this, btnShareElementTransition, getString(R.string.planet_transition_item));
+                        makeSceneTransitionAnimation(ActivityTransitionAnimationActivity.this, pairs.toArray(new Pair[pairs.size()]));
                 startActivity(intent, options.toBundle());
                 break;
             }

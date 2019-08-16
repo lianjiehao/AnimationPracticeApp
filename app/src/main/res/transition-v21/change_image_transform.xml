@@ -3,6 +3,5 @@
     <changeBounds
         android:duration="1000"
         android:interpolator="@android:interpolator/fast_out_slow_in">
-
     </changeBounds>
 </transitionSet>
