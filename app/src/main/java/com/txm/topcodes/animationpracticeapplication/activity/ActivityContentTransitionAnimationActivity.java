@@ -30,9 +30,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 public class ActivityContentTransitionAnimationActivity extends BaseActivity {
     @Override
     public Object initContentView(@Nullable Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
         // inside your activity (if you did not enable transitions in your theme)
 //        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         return R.layout.activity_activity_content_transition_animation;
