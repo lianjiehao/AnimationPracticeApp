@@ -1,4 +1,4 @@
-AnimationPracticeApplication
+AnimationPracticeApp
 ======
 
 这是一个练习 Android 动画的项目，实现了 [官方文档][1] 的所有动画效果，同时附加了一些平时可能会遇到但不常用的动画效果。下面是 Demo 中每个动画效果的实现文档或相关知识点的记录文档：
